@@ -1,0 +1,14 @@
+.button{
+    margin: 1rem 0 2rem 0;
+    border-radius: 0.5rem;
+    text-align: center;
+
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+}
+
+.button:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}

@@ -1,0 +1,15 @@
+.create-news .wrapper h2{
+    margin-top: 2rem;
+}
+
+.create-news .wrapper .title,.short-description,.open,.body,.end{
+    margin-top: 2rem;
+}
+
+.wrapper{
+    padding: 0 2rem;
+}
+
+/* .ckeditor{
+    height: 3rem;
+} */

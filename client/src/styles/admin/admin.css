@@ -1,0 +1,41 @@
+.admin .header{
+    height: 100px;
+    background:#00CC66;
+    text-align: center;
+    line-height: 100px;
+}
+
+.admin .header h3{
+    /* color: #FE3636; */
+    color: brown;
+}
+
+.admin .header a{
+    color: blue;
+}
+
+.admin .menu{
+    margin-top: 8px;
+}
+
+
+.admin .menu li{
+    float: left;
+    width: 24.9175%;
+    border-right: 1px solid #fff; 
+    text-align: center;
+    line-height: 30px;
+    background:#00CC66;
+    padding: 0.3rem 0;
+}
+
+
+.admin .menu a{
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.admin .menu ul{
+    list-style-type: none;
+}

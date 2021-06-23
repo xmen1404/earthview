@@ -1,0 +1,41 @@
+.header .top{
+    height: 100px;
+    background:#00CC66;
+    text-align: center;
+    line-height: 100px;
+}
+
+.header .top h3{
+    /* color: #FE3636; */
+    color: brown;
+}
+
+.header .top a{
+    color: blue;
+}
+
+.header .menu{
+    margin-top: 8px;
+}
+
+
+.header .menu li{
+    float: left;
+    width: 24.9175%;
+    border-right: 1px solid #fff; 
+    text-align: center;
+    line-height: 30px;
+    background:#00CC66;
+    padding: 0.3rem 0;
+}
+
+
+.header .menu a{
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.header .menu ul{
+    list-style-type: none;
+}

@@ -1,0 +1,19 @@
+.listnews table
+{
+	border-collapse: collapse;
+	margin-top: 20px;
+	width: 1250px;
+	text-align: center;
+}
+.listnews table tr
+{
+	border: 1px solid #0C6;
+	line-height: 45px;
+}
+
+.listnews table td
+{
+	border: 1px solid #0C6;
+	color: #666;
+}
+
