@@ -5,17 +5,17 @@ const controller = require('../controllers/post.controller');
 
 const verifyToken = require('../middleware/auth');
 
-// @route GET api/posts
+// @route POST api/posts
 // #desc get post
 // @access private - login xong mới thấy
 router.post('/', verifyToken ,controller.createPost);
 
-// @route POST api/posts
+// @route GET api/posts
 // #desc Get post
 // @access private - login xong mới thấy
 router.get('/', verifyToken, controller.getPost);
 
-// @route POST api/posts
+// @route PUT api/posts
 // #desc update post
 // @access private - login xong mới thấy
 router.put('/:id', verifyToken, controller.updatePost);

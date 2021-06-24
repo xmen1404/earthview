@@ -6,13 +6,71 @@ import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
 
 
+// const createNews = () =>{
+//     console.log("creating news");
+// }
 
 const CreateNews = () => {
-    const [content, setContent] = useState("");
+    const [category, setCategory] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [open, setOpen] = useState("");
+    const [body, setBody] = useState("");
+    const [end, setEnd] = useState("");
+
 
     const createNews = () =>{
         console.log("creating news");
+        console.log(title);
+        console.log(description);
+        console.log(open);
+        console.log(body);
+        console.log(end);
+
+        
     }
+
+
+    const handleReady = (editor) => {
+        // You can store the "editor" and use when it is needed.
+        console.log( 'Editor is ready to use!', editor );
+    }
+
+    const handleChange = ( event, editor , part) => {
+        const data = editor.getData();
+        console.log(data);
+
+        if(part === "title"){
+            setTitle(data);
+            console.log(title);
+        }
+        else if(part === "description"){
+            setDescription(data);
+            console.log(description);
+        }
+        else if(part === "open"){
+            setOpen(data);
+            console.log(open);
+        }
+        else if(part === "body"){
+            setBody(data);
+            console.log(body);
+        }
+        else if(part === "end"){
+            setEnd(data);
+            console.log(end);
+        }
+    }
+
+    const handleBlur = ( event, editor ) => {
+        console.log( 'Blur.', editor );
+    }
+
+    const handleFocus = ( event, editor ) => {
+        console.log( 'Focus.', editor );
+    } 
+
+
 
     return <div className = "create-news">
         <Header></Header>
@@ -25,20 +83,10 @@ const CreateNews = () => {
                     className = "ckeditor"
                     editor={ ClassicEditor }
                     data="<p>Title</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                    // onReady={editor => handleReady(editor)}
+                    onChange={(event, editor) => handleChange(event, editor, "title")}
+                    // onBlur={(event, editor) => handleBlur(event, editor)}
+                    // onFocus={(event, editor) => handleFocus(event, editor)}
                 />
             </div>
 
@@ -47,43 +95,22 @@ const CreateNews = () => {
                     className = "ckeditor"
                     editor={ ClassicEditor }
                     data="<p>Short description</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                    // onReady={editor => handleReady(editor)}
+                    onChange={(event, editor) => handleChange(event, editor, "description")}
+                    // onBlur={(event, editor) => handleBlur(event, editor)}
+                    // onFocus={(event, editor) => handleFocus(event, editor)}
                 />
             </div>
-
 
             <div className = "open">
                 <CKEditor
                     className = "ckeditor"
                     editor={ ClassicEditor }
-                    data="<p>Open</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                    data="<p>open</p>"
+                    // onReady={editor => handleReady(editor)}
+                    onChange={(event, editor) => handleChange(event, editor, "open")}
+                    // onBlur={(event, editor) => handleBlur(event, editor)}
+                    // onFocus={(event, editor) => handleFocus(event, editor)}
                 />
             </div>
 
@@ -91,21 +118,11 @@ const CreateNews = () => {
                 <CKEditor
                     className = "ckeditor"
                     editor={ ClassicEditor }
-                    data="<p>Body</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                    data="<p>body</p>"
+                    // onReady={editor => handleReady(editor)}
+                    onChange={(event, editor) => handleChange(event, editor, "body")}
+                    // onBlur={(event, editor) => handleBlur(event, editor)}
+                    // onFocus={(event, editor) => handleFocus(event, editor)}
                 />
             </div>
 
@@ -113,25 +130,15 @@ const CreateNews = () => {
                 <CKEditor
                     className = "ckeditor"
                     editor={ ClassicEditor }
-                    data="<p>End</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                    data="<p>end</p>"
+                    // onReady={editor => handleReady(editor)}
+                    onChange={(event, editor) => handleChange(event, editor, "end")}
+                    // onBlur={(event, editor) => handleBlur(event, editor)}
+                    // onFocus={(event, editor) => handleFocus(event, editor)}
                 />
             </div>
 
-            <Button onClick = {createNews}
+            <Button handleClick = {createNews}
                     bgcolor = "#3B5998" 
                     height = "2.3rem" 
                     width = "6rem" 
