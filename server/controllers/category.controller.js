@@ -5,15 +5,15 @@ module.exports.createCategory = async (req, res) => {
 
     // simple validation
     if(!name){
-        res.status(400).json({success: false, message: "Category name is required!"});
+        return res.status(400).json({success: false, message: "Category name is required!"});
     }
 
     try{
         // check exist
-        const category = CategoryModel.findOne({name: name});
+        const category = await CategoryModel.findOne({name: name});
 
         if(category){
-            res.status(400).json({success: false, message: "category exists"});
+            return res.status(400).json({success: false, message: "category exists"});
         }
 
         const newCategory = new CategoryModel({
@@ -23,7 +23,7 @@ module.exports.createCategory = async (req, res) => {
 
         await newCategory.save();
 
-        res.json({success: true, category: newCategory});
+        return res.json({success: true, category: newCategory});
 
 
     }catch(err){

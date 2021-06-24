@@ -9,6 +9,7 @@ connectDB();
 const userRoute = require('./routes/auth.route');
 const postRoute = require('./routes/post.route');
 const categoryRoute = require('./routes/category.route');
+const newsRoute = require('./routes/news.route');
 
 app.use(express.json()); // đọc được bất cứ thứ gì gửi trong body (trong req body)
 
@@ -21,6 +22,8 @@ app.use('/api/auth', userRoute);
 app.use('/api/posts', postRoute);
 
 app.use('/api/categories', categoryRoute);
+
+app.use('/api/news', newsRoute);
 
 
 app.listen(PORT, ()=>{
