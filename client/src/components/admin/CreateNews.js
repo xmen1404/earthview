@@ -1,9 +1,11 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Header from "./Header.js";
 import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
+import axios from 'axios';
+import {apiUrl} from '../../constants';
 
 
 // const createNews = () =>{
@@ -11,23 +13,35 @@ import "../../styles/admin/createnews.css";
 // }
 
 const CreateNews = () => {
-    const [category, setCategory] = useState("");
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [open, setOpen] = useState("");
-    const [body, setBody] = useState("");
-    const [end, setEnd] = useState("");
+    // const [category, setCategory] = useState("");
+    // const [title, setTitle] = useState("");
+    // const [description, setDescription] = useState("");
+    // const [open, setOpen] = useState("");
+    // const [body, setBody] = useState("");
+    // const [end, setEnd] = useState("");
+    // const [categoryList, setCategoryList] = useState([]);
+
+    const [state, setState] = useState({
+        category: "",
+        title: "",
+        description: "",
+        open: "",
+        body: "",
+        end: "",
+        categoryList: []
+    })
 
 
     const createNews = () =>{
+        const {category, title, description, open, body, end, categoryList} = state;
+
         console.log("creating news");
+        console.log(category);
         console.log(title);
         console.log(description);
         console.log(open);
         console.log(body);
         console.log(end);
-
-        
     }
 
 
@@ -40,26 +54,10 @@ const CreateNews = () => {
         const data = editor.getData();
         console.log(data);
 
-        if(part === "title"){
-            setTitle(data);
-            console.log(title);
-        }
-        else if(part === "description"){
-            setDescription(data);
-            console.log(description);
-        }
-        else if(part === "open"){
-            setOpen(data);
-            console.log(open);
-        }
-        else if(part === "body"){
-            setBody(data);
-            console.log(body);
-        }
-        else if(part === "end"){
-            setEnd(data);
-            console.log(end);
-        }
+        setState({
+            ...state,
+            [part]: data
+        })
     }
 
     const handleBlur = ( event, editor ) => {
@@ -70,6 +68,38 @@ const CreateNews = () => {
         console.log( 'Focus.', editor );
     } 
 
+    useEffect(()=>{
+        getCategory();
+    }, [])
+
+    const getCategory = async () => {
+        try{
+            const url = apiUrl + "/categories";
+            // harsh code
+            const header = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA"
+            
+            const res = await axios.get(url,{
+                headers:{
+                    Authorization: header
+                }
+            })
+
+            // console.log("check res", res.data.categories);
+
+            setState({
+                ...state,
+                categoryList: res.data.categories
+            })
+
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
+    const {categoryList} = state;
+
+    console.log("debug list", categoryList);
 
 
     return <div className = "create-news">
@@ -77,6 +107,11 @@ const CreateNews = () => {
         
         <div className = "wrapper">
             <h2>Create news</h2>
+
+            {categoryList.map((category) => {
+                // console.log("bên trong", category);
+                return <div>{category.name}</div>
+            })}
 
             <div className = "title">
                 <CKEditor

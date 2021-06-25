@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = 5000;
+const cors = require('cors');
 
 const connectDB = require('./database/db');
 connectDB();
@@ -12,6 +13,8 @@ const categoryRoute = require('./routes/category.route');
 const newsRoute = require('./routes/news.route');
 
 app.use(express.json()); // đọc được bất cứ thứ gì gửi trong body (trong req body)
+app.use(cors());
+
 
 app.get('/', (req, res)=>{
     res.send("hello world");
