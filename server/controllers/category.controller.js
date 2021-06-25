@@ -36,7 +36,7 @@ module.exports.createCategory = async (req, res) => {
 module.exports.getCategory = async (req, res) => {
     try{
         const categories = await CategoryModel.find();
-        res.json({success: true, categories: categories});
+        return res.json({success: true, categories: categories});
 
     }catch(err){
         console.log(err);

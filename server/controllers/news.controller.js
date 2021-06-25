@@ -48,3 +48,17 @@ module.exports.createNews = async (req, res) => {
         res.status(500).json({success: false, message: "Internal server error"});
     }
 }
+
+module.exports.getNews = async (req,res) => {
+    try{
+        const news = await NewsModel.find()
+                                    .populate("user", ["username"])
+                                    .populate("category", ["name"]);
+
+        return res.json({success: true, news: news });
+        
+    }catch(err){
+        console.log(err);
+        res.status(500).json({success: false, message: "Internal server error"});
+    }
+}
