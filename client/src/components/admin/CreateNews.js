@@ -1,16 +1,12 @@
 import React , {useState, useEffect} from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import Header from "./Header.js";
 import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
 import axios from 'axios';
 import {apiUrl} from '../../constants';
-
-
-// const createNews = () =>{
-//     console.log("creating news");
-// }
+import Ckeditor from '../ckeditor/Ckeditor';
+import ReactHtmlParser from 'react-html-parser';
 
 const CreateNews = () => {
     // const [category, setCategory] = useState("");
@@ -25,33 +21,38 @@ const CreateNews = () => {
         category: "",
         title: "",
         description: "",
-        open: "",
-        body: "",
-        end: "",
-        categoryList: []
+        content:"",
+        categoryList: [],
+        result:""
     })
+    
 
+    const view = () => {
+        const {category, title, description, content} = state;
 
-    const createNews = () =>{
-        const {category, title, description, open, body, end, categoryList} = state;
+        console.log("debug", title, description, content);
+        const result = title + description + content;
 
-        console.log("creating news");
-        console.log(category);
-        console.log(title);
-        console.log(description);
-        console.log(open);
-        console.log(body);
-        console.log(end);
+        setState({
+            ...state,
+            result: result
+        })
+        // console.log("creating news");
+        // console.log(category);
+        // console.log(title);
+        // console.log(description);
+        // console.log(content);
+    }
+
+    const createNews = () => {
+
     }
 
 
-    const handleReady = (editor) => {
-        // You can store the "editor" and use when it is needed.
-        console.log( 'Editor is ready to use!', editor );
-    }
+    // const handleChange = ( event, editor , part) => {
+    const handleChange = ( event , part, editor) => {
+        const data = part === "category" ? event.target.value: editor.getData();
 
-    const handleChange = ( event, editor , part) => {
-        const data = editor.getData();
         console.log(data);
 
         setState({
@@ -60,13 +61,6 @@ const CreateNews = () => {
         })
     }
 
-    const handleBlur = ( event, editor ) => {
-        console.log( 'Blur.', editor );
-    }
-
-    const handleFocus = ( event, editor ) => {
-        console.log( 'Focus.', editor );
-    } 
 
     useEffect(()=>{
         getCategory();
@@ -84,11 +78,19 @@ const CreateNews = () => {
                 }
             })
 
-            // console.log("check res", res.data.categories);
+            console.log("check res", res.data.categories);
+            let list = []
+            for(let category of res.data.categories){
+                // console.log("debug in for", category);
+                list.push({
+                    label: category.name,
+                    value: category._id
+                })
+            }
 
             setState({
                 ...state,
-                categoryList: res.data.categories
+                categoryList: list
             })
 
         }catch(err){
@@ -97,82 +99,57 @@ const CreateNews = () => {
     }
 
 
-    const {categoryList} = state;
+    const {categoryList, result} = state;
 
-    console.log("debug list", categoryList);
+    // console.log("debug list", categoryList);
 
 
     return <div className = "create-news">
         <Header></Header>
         
         <div className = "wrapper">
-            <h2>Create news</h2>
+            <h1>Create news</h1>
 
-            {categoryList.map((category) => {
-                // console.log("bên trong", category);
-                return <div>{category.name}</div>
-            })}
+            {/* <div className = "select-container">
+                <Select options={categoryList} />   
+            </div> */}
+            
+            <div className = "category">
+                <select onChange={(event)=>handleChange(event, "category")}>
+                    <option value="default">Choose category</option>
+                    {categoryList.map((category)=>{
+                        return <option value={category.value}>{category.label}</option>
+                    })}
+                </select>
+            </div>
 
             <div className = "title">
-                <CKEditor
-                    className = "ckeditor"
-                    editor={ ClassicEditor }
-                    data="<p>Title</p>"
-                    // onReady={editor => handleReady(editor)}
-                    onChange={(event, editor) => handleChange(event, editor, "title")}
-                    // onBlur={(event, editor) => handleBlur(event, editor)}
-                    // onFocus={(event, editor) => handleFocus(event, editor)}
-                />
+                <h2>Title</h2>
+                <Ckeditor 
+                            // initialData = "title" 
+                            state = "title"
+                            handleChange = {handleChange}
+                ></Ckeditor>
             </div>
 
-            <div className = "short-description">
-                <CKEditor
-                    className = "ckeditor"
-                    editor={ ClassicEditor }
-                    data="<p>Short description</p>"
-                    // onReady={editor => handleReady(editor)}
-                    onChange={(event, editor) => handleChange(event, editor, "description")}
-                    // onBlur={(event, editor) => handleBlur(event, editor)}
-                    // onFocus={(event, editor) => handleFocus(event, editor)}
-                />
+            <div className = "description">
+                <h2>Short description</h2>
+                <Ckeditor 
+                            // initialData = "short-description" 
+                            state = "description"
+                            handleChange = {handleChange}
+                ></Ckeditor>
             </div>
 
-            <div className = "open">
-                <CKEditor
-                    className = "ckeditor"
-                    editor={ ClassicEditor }
-                    data="<p>open</p>"
-                    // onReady={editor => handleReady(editor)}
-                    onChange={(event, editor) => handleChange(event, editor, "open")}
-                    // onBlur={(event, editor) => handleBlur(event, editor)}
-                    // onFocus={(event, editor) => handleFocus(event, editor)}
-                />
+            <div className = "content">
+                <h2>Content</h2>
+                <Ckeditor 
+                            // initialData = "open" 
+                            state = "content"
+                            handleChange = {handleChange}
+                ></Ckeditor>
             </div>
-
-            <div className = "body">
-                <CKEditor
-                    className = "ckeditor"
-                    editor={ ClassicEditor }
-                    data="<p>body</p>"
-                    // onReady={editor => handleReady(editor)}
-                    onChange={(event, editor) => handleChange(event, editor, "body")}
-                    // onBlur={(event, editor) => handleBlur(event, editor)}
-                    // onFocus={(event, editor) => handleFocus(event, editor)}
-                />
-            </div>
-
-            <div className = "end">
-                <CKEditor
-                    className = "ckeditor"
-                    editor={ ClassicEditor }
-                    data="<p>end</p>"
-                    // onReady={editor => handleReady(editor)}
-                    onChange={(event, editor) => handleChange(event, editor, "end")}
-                    // onBlur={(event, editor) => handleBlur(event, editor)}
-                    // onFocus={(event, editor) => handleFocus(event, editor)}
-                />
-            </div>
-
+            
             <Button handleClick = {createNews}
                     bgcolor = "#3B5998" 
                     height = "2.3rem" 
@@ -180,6 +157,20 @@ const CreateNews = () => {
                     content = "Create" 
                     position = "right" 
                     color = "#ffffff"></Button>
+                    
+            <Button handleClick = {view}
+                    bgcolor = "#3B5998" 
+                    height = "2.3rem" 
+                    width = "6rem" 
+                    content = "View" 
+                    position = "right" 
+                    color = "#ffffff"></Button>
+
+            <div style = {{clear: "right"}}></div>
+
+            <div className = "result">
+                    {result ? ReactHtmlParser(result) : ""}
+            </div>
         </div>
     </div>
 }

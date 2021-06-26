@@ -18,19 +18,19 @@ const newsSchema = new Schema({
         type: String,
         required: true
     },
-    open:{
+    content:{
         type: String,
         required: true
     },
-    body:{
+    // body:{
         
-        type: String,
-        required: true
-    },
-    end:{
-        type: String,
-        required: true
-    } 
+    //     type: String,
+    //     required: true
+    // },
+    // end:{
+    //     type: String,
+    //     required: true
+    // } 
 })
 
 module.exports = mongoose.model('news', newsSchema);

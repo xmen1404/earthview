@@ -12,7 +12,8 @@ a:hover{
 }
 
 body{
-  width: 1250px;
+  /* width: 1250px; */
+  width: 80vw;
   margin: auto;
   overflow-x: hidden;
 }

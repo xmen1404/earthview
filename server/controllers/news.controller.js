@@ -1,7 +1,7 @@
 const NewsModel = require("../models/news.model");
 
 module.exports.createNews = async (req, res) => {
-    const {category, title, description, open, body, end} = req.body;
+    const {category, title, description, content} = req.body;
 
     // simple validation
     let errors = []
@@ -14,14 +14,8 @@ module.exports.createNews = async (req, res) => {
     if(!description){
         errors.push("description is required");
     }
-    if(!open){
+    if(!content){
         errors.push("open is required");
-    }
-    if(!body){
-        errors.push("body is required");
-    }
-    if(!end){
-        errors.push("end is required");
     }
 
     if(errors.length > 0){
@@ -34,9 +28,7 @@ module.exports.createNews = async (req, res) => {
             category: category,
             title: title,
             description: description,
-            open: open,
-            body: body, 
-            end: end
+            content: content
         });
     
         await newNews.save();

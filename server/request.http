@@ -78,9 +78,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhM
     "category": "60d351f74095bc4c84702140",
     "title": "title 2",
     "description": "description 2", 
-    "open": "open 1",
-    "body": "body 1",
-    "end": "end 2"
+    "content": "open body end"
 }
 
 ###
