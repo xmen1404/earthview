@@ -1,27 +1,40 @@
-.create-news .wrapper{
-    width: 80%;
-    margin: auto;
+.create-news .wrapper .design{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
-.create-news .wrapper h1{
+.create-news .wrapper .design .left{
+    width: 43.5%;
+    /* margin: auto; */
+    padding: 0 3rem 0 3rem;
+    /* border-right: 1px solid #000000; */
+}
+
+.create-news .wrapper .design .left h1{
     margin-top: 3rem;
 }
 
-.create-news .wrapper h2{
+.create-news .wrapper .design .left h2{
     margin-bottom: 1rem;
 }
 
-.create-news .wrapper .title,.description,.content{
+.create-news .wrapper .design .left .title,.description,.content{
     margin-top: 2rem;
 }
 
-.create-news .wrapper{
-    padding: 0 2rem;
-}
 
 /* .ckeditor{
     height: 3rem;
 } */
+
+
+.create-news .wrapper .design .right{
+    width: 44%;
+    padding: 11rem 3rem 0 3rem;
+}
+
+
 
 .category select{
     height: 2.5rem;

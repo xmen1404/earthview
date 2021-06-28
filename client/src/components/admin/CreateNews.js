@@ -51,6 +51,7 @@ const CreateNews = () => {
             ...state,
             result: result
         })
+
         // console.log("creating news");
         // console.log(category);
         // console.log(title);
@@ -62,23 +63,33 @@ const CreateNews = () => {
 
     }
 
+    const toTop = () => {
+        
+    }
 
     // const handleChange = ( event, editor , part) => {
     const handleChange = ( event , part, editor) => {
         const data = part === "category" ? event.target.value: editor.getData();
 
-        console.log(data);
+        console.log("handling", part);
 
         setState({
             ...state,
             [part]: data
         })
+
+
     }
 
 
     useEffect(()=>{
         getCategory();
     }, [])
+
+    useEffect(()=>{
+        console.log("state change");
+        view();
+    }, [state.category, state.title, state.description, state.content])
 
     const getCategory = async () => {
         try{
@@ -122,49 +133,75 @@ const CreateNews = () => {
         <Header></Header>
         
         <div className = "wrapper">
-            <h1>Create news</h1>
+            <div className = "design">
+                <div className = "left">
+                    <h1>Create news</h1>
 
-            {/* <div className = "select-container">
-                <Select options={categoryList} />   
-            </div> */}
-            
-            <div className = "category">
-                <select onChange={(event)=>handleChange(event, "category")}>
-                    <option value="default">Choose category</option>
-                    {categoryList.map((category)=>{
-                        return <option value={category.value}>{category.label}</option>
-                    })}
-                </select>
+                    {/* <div className = "select-container">
+                        <Select options={categoryList} />   
+                    </div> */}
+
+                    <div className = "category">
+                        <select onChange={(event)=>handleChange(event, "category")}>
+                            <option value="default">Choose category</option>
+                            {categoryList.map((category)=>{
+                                return <option value={category.value}>{category.label}</option>
+                            })}
+                        </select>
+                    </div>
+
+                    <div className = "title">
+                        <h2>Title</h2>
+                        <Ckeditor 
+                                    // initialData = "title" 
+                                    state = "title"
+                                    handleChange = {handleChange}
+                        ></Ckeditor>
+                    </div>
+
+                    <div className = "description">
+                        <h2>Short description</h2>
+                        <Ckeditor 
+                                    // initialData = "short-description" 
+                                    state = "description"
+                                    handleChange = {handleChange}
+                        ></Ckeditor>
+                    </div>
+
+                    <div className = "content">
+                        <h2>Content</h2>
+                        <Ckeditor 
+                                    // initialData = "open" 
+                                    state = "content"
+                                    handleChange = {handleChange}
+                        ></Ckeditor>
+                    </div>
+
+                    <Button handleClick = {createNews}
+                    bgcolor = "#3B5998" 
+                    height = "2.3rem" 
+                    width = "6rem" 
+                    content = "Create" 
+                    position = "right" 
+                    color = "#ffffff"></Button>
+                    
+                    <Button handleClick = {toTop}
+                            bgcolor = "#3B5998" 
+                            height = "2.3rem" 
+                            width = "6rem" 
+                            content = "View" 
+                            position = "right" 
+                            color = "#ffffff"></Button>
+                </div>
+
+                <div className = "right">
+                    {
+                        result ? <News data = {result} ></News> : ""
+                    }
+                </div>
             </div>
 
-            <div className = "title">
-                <h2>Title</h2>
-                <Ckeditor 
-                            // initialData = "title" 
-                            state = "title"
-                            handleChange = {handleChange}
-                ></Ckeditor>
-            </div>
-
-            <div className = "description">
-                <h2>Short description</h2>
-                <Ckeditor 
-                            // initialData = "short-description" 
-                            state = "description"
-                            handleChange = {handleChange}
-                ></Ckeditor>
-            </div>
-
-            <div className = "content">
-                <h2>Content</h2>
-                <Ckeditor 
-                            // initialData = "open" 
-                            state = "content"
-                            handleChange = {handleChange}
-                ></Ckeditor>
-            </div>
-            
-            <Button handleClick = {createNews}
+            {/* <Button handleClick = {createNews}
                     bgcolor = "#3B5998" 
                     height = "2.3rem" 
                     width = "6rem" 
@@ -178,17 +215,19 @@ const CreateNews = () => {
                     width = "6rem" 
                     content = "View" 
                     position = "right" 
-                    color = "#ffffff"></Button>
+                    color = "#ffffff"></Button> */}
 
             <div style = {{clear: "right"}}></div>
+            
+            
 
             {/* <div className = "result">
                     {result ? ReactHtmlParser(result) : ""}
             </div> */}
 
-            {
+            {/* {
                 result ? <News data = {result} ></News> : ""
-            }
+            } */}
         </div>
     </div>
 }

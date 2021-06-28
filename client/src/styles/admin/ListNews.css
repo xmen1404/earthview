@@ -2,7 +2,8 @@
 {
 	border-collapse: collapse;
 	margin-top: 20px;
-	width: 1250px;
+	/* width: 1250px; */
+	width: 100%;
 	text-align: center;
 }
 .listnews table tr
