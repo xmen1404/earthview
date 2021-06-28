@@ -16,11 +16,17 @@ function App() {
         <Route path = "/admin" exact component = {Admin}/>
         <Route path = "/admin/news" exact component = {NewsManagement}/>
         <Route path = "/admin/news/create" exact component = {CreateNews}/>
-        <Route exact path='/' component={Landing}/>
-        <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
-        <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} />
       </Switch>
     </Router>
+    <AuthContextProvider>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Landing}/>
+            <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
+            <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} />
+          </Switch>
+        </Router>
+    </AuthContextProvider>
   );
 }
 
