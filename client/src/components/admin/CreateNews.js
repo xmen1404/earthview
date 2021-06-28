@@ -6,7 +6,7 @@ import "../../styles/admin/createnews.css";
 import axios from 'axios';
 import {apiUrl} from '../../constants';
 import Ckeditor from '../ckeditor/Ckeditor';
-import ReactHtmlParser from 'react-html-parser';
+import News from '../view/News';
 
 const CreateNews = () => {
     // const [category, setCategory] = useState("");
@@ -31,7 +31,21 @@ const CreateNews = () => {
         const {category, title, description, content} = state;
 
         console.log("debug", title, description, content);
-        const result = title + description + content;
+
+        const today = new Date();
+        // const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+        // console.log(date);
+
+        const result = {
+            category, title, description, content,
+            author: "admin", // still harsh code
+            date:{
+                day: today.getDate(),
+                month: today.getMonth() + 1,
+                year: today.getFullYear()
+            }
+        };
 
         setState({
             ...state,
@@ -84,7 +98,7 @@ const CreateNews = () => {
                 // console.log("debug in for", category);
                 list.push({
                     label: category.name,
-                    value: category._id
+                    value: category.name
                 })
             }
 
@@ -168,9 +182,13 @@ const CreateNews = () => {
 
             <div style = {{clear: "right"}}></div>
 
-            <div className = "result">
+            {/* <div className = "result">
                     {result ? ReactHtmlParser(result) : ""}
-            </div>
+            </div> */}
+
+            {
+                result ? <News data = {result} ></News> : ""
+            }
         </div>
     </div>
 }

@@ -1,0 +1,63 @@
+.news{
+    margin-bottom: 2rem;
+    width: 47vw;
+}
+
+.news .category-time{
+    display: flex;
+    flex-direction: row;
+    /* font-size: 1rem; */
+}
+
+.news .category-time .category{
+    color: #00773E;
+}
+
+.news .category-time .time{
+    margin-left: 0.5rem;
+}
+
+
+.news .header .title{
+    margin-top: 1rem;
+}
+
+.news .header .description{
+    margin-top: 1.5rem;
+}
+
+
+.news .header .author{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.news .header .author .avatar{
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.news .header .author .avatar img{
+    width: 100%;
+    /* border-radius: 50%; */
+}
+
+.news .header .author .information{
+    margin-left: 1rem;
+}
+
+
+.news figure{
+    margin-top: 2rem;
+}
+
+.news .body figcaption{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.news .body p{
+    /* padding: 0 5rem; */
+}
