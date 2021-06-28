@@ -1,4 +1,4 @@
-import './App.css';
+/* import './App.css';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Admin from "./components/admin/Admin.js";
 import NewsManagement from "./components/admin/NewsManagement.js";
@@ -18,6 +18,19 @@ function App() {
         <Route path = "/admin/news/create" exact component = {CreateNews}/>
       </Switch>
     </Router>
+  );
+}
+
+export default App;
+*/
+import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import Landing from './components/layout/Landing'
+import Auth from './views/Auth'
+import AuthContextProvider from './contexts/AuthContext'
+function App() {
+  return (
+
     <AuthContextProvider>
         <Router>
           <Switch>
@@ -27,7 +40,8 @@ function App() {
           </Switch>
         </Router>
     </AuthContextProvider>
-  );
+  )
 }
 
 export default App;
+
