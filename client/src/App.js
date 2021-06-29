@@ -1,11 +1,11 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import Admin from "./components/admin/Admin.js";
+import Admin from "./views/admin/Admin";
 import NewsManagement from "./components/admin/NewsManagement.js";
 import CreateNews from "./components/admin/CreateNews.js";
 import Landing from './components/layout/Landing';
-import Home from "./views/Home";
-import Auth from './views/Auth';
+import Home from "./views/users/Home";
+import Auth from "./views/users/Auth";
 import AuthContextProvider from './contexts/AuthContext'
 function App() {
   return (
