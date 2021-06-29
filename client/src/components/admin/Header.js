@@ -14,9 +14,6 @@ const header = ()=>{
                 <li><a href="#">Quản lí bình luận</a> </li>
             </ul>
         </div>
-
-        <div style = {{clear: "left"}}></div>
-
     </div>
 }
 

@@ -1,31 +1,44 @@
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { useState, useContext } from 'react'
 import {AuthContext} from "../../contexts/AuthContext"
-import "../../styles/auth/loginform.css";
+import "../../styles/auth/auth.css";
 
 const LoginForm = () => {
+    // context
     const {loginUser} = useContext(AuthContext)
+
+    // router
+    const history = useHistory();
+
+    // local state
     const [loginForm, setLoginForm] = useState({
         username: '',
         password: ''
     })
+
     const {username,password } = loginForm
 
     const onChangeLoginForm = event => setLoginForm({...loginForm, [event.target.name]: event.target.value})
 
     const login = async event => {
         event.preventDefault()
+
         try {
             const loginData = await loginUser(loginForm)
             console.log(loginData)
+
+            if(loginData.success){
+                history.push('/');
+            }
+
         } catch (error){
             console.log(error)
         }
     }
 
-    return <div className = "loginform">
+    return <div className = "auth-form">
         <Form className='my-4' onSubmit={login}>
             <Form.Group>
                 <Form.Control 
@@ -48,8 +61,8 @@ const LoginForm = () => {
             <Button variant = 'success' type = 'submit'>Login</Button>
         </Form>
 
-        <div className = "suggest-register">
-            <div style = {{marginRight: "2rem"}}>
+        <div className = "suggestion">
+            <div style = {{marginRight: "1rem"}}>
                 Don't have an account?
             </div>
 

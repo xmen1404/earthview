@@ -18,10 +18,14 @@
     margin-top: 8px;
 }
 
+.header .menu ul{
+    display: flex;
+    flex-direction: row;
+}
 
 .header .menu li{
-    float: left;
-    width: 24.9175%;
+    /* float: left; */
+    width: 25%;
     border-right: 1px solid #fff; 
     text-align: center;
     line-height: 30px;

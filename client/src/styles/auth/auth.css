@@ -1,9 +1,9 @@
-.loginform .form-group{
+.auth-form .form-group{
     width: 25rem;
     margin: 0 0 1rem 0;
 }
 
-.loginform .suggest-register{
+.auth-form .suggestion{
     display: flex;
     flex-direction: row;
     justify-content: center;

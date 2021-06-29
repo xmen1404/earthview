@@ -4,19 +4,11 @@ import Header from "./Header.js";
 import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
 import axios from 'axios';
-import {apiUrl} from '../../contexts/constants';
+import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
 import Ckeditor from '../ckeditor/Ckeditor';
 import News from '../layout/News';
 
 const CreateNews = () => {
-    // const [category, setCategory] = useState("");
-    // const [title, setTitle] = useState("");
-    // const [description, setDescription] = useState("");
-    // const [open, setOpen] = useState("");
-    // const [body, setBody] = useState("");
-    // const [end, setEnd] = useState("");
-    // const [categoryList, setCategoryList] = useState([]);
-
     const [state, setState] = useState({
         category: "",
         title: "",
@@ -51,12 +43,6 @@ const CreateNews = () => {
             ...state,
             result: result
         })
-
-        // console.log("creating news");
-        // console.log(category);
-        // console.log(title);
-        // console.log(description);
-        // console.log(content);
     }
 
     const createNews = () => {
@@ -94,8 +80,7 @@ const CreateNews = () => {
     const getCategory = async () => {
         try{
             const url = apiUrl + "/categories";
-            // harsh code
-            const header = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA"
+            const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
             
             const res = await axios.get(url,{
                 headers:{
