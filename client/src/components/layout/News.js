@@ -1,5 +1,5 @@
 import ReactHtmlParser from 'react-html-parser';
-import '../../styles/view/news.css'
+import '../../styles/layout/news.css'
 
 const News = (props)=>{
     const {data} = props;

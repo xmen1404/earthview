@@ -4,9 +4,9 @@ import Header from "./Header.js";
 import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
 import axios from 'axios';
-import {apiUrl} from '../../constants';
+import {apiUrl} from '../../contexts/constants';
 import Ckeditor from '../ckeditor/Ckeditor';
-import News from '../view/News';
+import News from '../layout/News';
 
 const CreateNews = () => {
     // const [category, setCategory] = useState("");
@@ -64,7 +64,7 @@ const CreateNews = () => {
     }
 
     const toTop = () => {
-        
+
     }
 
     // const handleChange = ( event, editor , part) => {
