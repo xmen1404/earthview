@@ -163,6 +163,7 @@ const CreateNews = () => {
                     </div>
 
                     <Button handleClick = {createNews}
+                    margin =  "1.5rem 1rem 2rem 0"
                     bgcolor = "#3B5998" 
                     height = "2.3rem" 
                     width = "6rem" 
@@ -170,13 +171,13 @@ const CreateNews = () => {
                     position = "right" 
                     color = "#ffffff"></Button>
                     
-                    <Button handleClick = {toTop}
+                    {/* <Button handleClick = {toTop}
                             bgcolor = "#3B5998" 
                             height = "2.3rem" 
                             width = "6rem" 
                             content = "View" 
                             position = "right" 
-                            color = "#ffffff"></Button>
+                            color = "#ffffff"></Button> */}
                 </div>
 
                 <div className = "right">

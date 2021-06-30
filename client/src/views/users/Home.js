@@ -1,6 +1,8 @@
+import Banner from "../../components/banner/Banner";
+
 const Home = () => {
     return <div className = "home">
-        <h1>Welcome to EarthView</h1>
+        <Banner></Banner>
     </div>
 }
 
