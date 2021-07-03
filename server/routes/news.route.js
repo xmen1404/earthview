@@ -14,4 +14,9 @@ router.post('/', verifyToken, controller.createNews);
 // @access private - admin
 router.get('/', verifyToken, controller.getNews);
 
+// @route GET api/news/id
+// #desc get news by id
+// @access private - login xong mới thấy
+router.get('/:id', verifyToken, controller.getNewsById);
+
 module.exports = router;

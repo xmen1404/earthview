@@ -1,0 +1,143 @@
+
+/* Slideshow */
+
+.newsSlider-slideshow {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 100vw;
+    margin-left: 5rem;
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.newsSlider-slideshowSlider {
+    white-space: nowrap;
+    transition: ease 1000ms;
+    /* position: relative; */
+}
+
+.newsSlider-slide {
+    display: inline-block;
+
+    height: 30rem;
+    width: 20%;
+    margin: 0 1rem;
+}
+
+.newsSlider-slide .background{
+    height: 25rem;
+    /* border-radius: 8px; */
+    border-radius: 1rem;
+}
+
+
+.newsSlider-slideshow .right{
+    height: 30rem;
+    width: 5%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    background-color: #cccccc;
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-timing-function: linear; 
+}
+
+.newsSlider-slideshow .left{
+    height: 30rem;
+    width: 5%;
+    position: absolute;
+    right: 5%;
+    top: 0;
+    opacity: 0.5;
+    background-color: #cccccc;
+    border-right: 1px solid #aaaaaa;
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+}
+
+
+.newsSlider-slideshow .arrow-right{
+    position: absolute;
+    right: 1.8%;
+    top: 0;
+    bottom: 0;
+    height: 8.5rem;
+    margin: auto;
+    /* width: 0.5rem;
+    height: 0.5rem; */
+}
+
+.newsSlider-slideshow .arrow-right img{
+    width: 2rem;
+    height: 3rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.newsSlider-slideshow .arrow-left{
+    position: absolute;
+    right: 6%;
+    top: 0;
+    bottom: 0;
+    height: 8.5rem;
+    margin: auto;
+    /* width: 0.5rem;
+    height: 0.5rem; */
+}
+
+.newsSlider-slideshow .arrow-left img{
+    width: 2rem;
+    height: 3rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    transform: scaleX(-1);
+}
+
+.newsSlider-slideshow .arrow-left,.arrow-right img:hover{
+    cursor: pointer;
+}
+
+
+.newsSlider-slideshow .clear{
+    opacity:0.7; 
+}
+
+.newsSlider-slide .information .category{
+    /* width: 20%; */
+    color: #000000;
+    margin-top: 0.3rem;
+}
+
+.newsSlider-slide .information .title{
+    white-space: pre-wrap;
+}
+
+
+/* .hide{
+    opacity: 0;
+} */
+
+/* Buttons */
+
+/* .newsSlider-slideshowDots {
+    text-align: center; 
+}
+
+.newsSlider-slideshowDot {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+
+    cursor: pointer;
+    margin: 15px 7px 0px;
+
+    background-color: #c4c4c4;
+}
+
+.newsSlider-slideshowDot.active {
+    background-color: #6a0dad;
+} */

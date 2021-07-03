@@ -1,7 +1,7 @@
 const NewsModel = require("../models/news.model");
 
 module.exports.createNews = async (req, res) => {
-    const {category, title, description, content} = req.body;
+    const {category, title, background, content, date} = req.body;
 
     // simple validation
     let errors = []
@@ -11,11 +11,11 @@ module.exports.createNews = async (req, res) => {
     if(!title){
         errors.push("title is required");
     }
-    if(!description){
-        errors.push("description is required");
+    if(!background){
+        errors.push("background is required");
     }
     if(!content){
-        errors.push("open is required");
+        errors.push("content is required");
     }
 
     if(errors.length > 0){
@@ -27,8 +27,9 @@ module.exports.createNews = async (req, res) => {
             user: req.userId,
             category: category,
             title: title,
-            description: description,
-            content: content
+            background: background,
+            content: content,
+            date: date
         });
     
         await newNews.save();
@@ -52,5 +53,24 @@ module.exports.getNews = async (req,res) => {
     }catch(err){
         console.log(err);
         res.status(500).json({success: false, message: "Internal server error"});
+    }
+}
+
+module.exports.getNewsById = async (req, res) => {
+    try{
+        const condition = {_id: req.params.id, user: req.userId};
+        const news = await NewsModel.findOne(condition)
+                                    .populate("user", ["username"])
+                                    .populate("category", ["name"]);
+
+        if(!news){
+            res.status(401).json({"success": false, "message": "news not found or user is not autherized"})
+        }
+
+        res.json({"success": true, news: news});
+
+    }catch(err){
+        console.log(err);
+        res.status(500).json({"success": false, "message": "Internal server error"});
     }
 }

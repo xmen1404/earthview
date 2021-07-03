@@ -43,3 +43,23 @@ module.exports.getCategory = async (req, res) => {
         res.status(500).json({success: false, message: "Internal server error"});
     }
 }
+
+module.exports.deleteCategory= async (req, res) => {
+    try{
+        // console.log("debug1",req.userId);
+        const deletePostCondition = {_id: req.params.id};
+        // console.log(deletePostCondition)
+
+        const deletedPost = await CategoryModel.findOneAndDelete(deletePostCondition);
+
+        if(!deletedPost){
+            return res.status(401).json({"success": false, "message": "Post not found or user is not autherized"})
+        }
+
+        return res.json({"success": true, post: deletedPost})
+
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({"success": false, "message": "Internal server error"});
+    }
+}

@@ -20,7 +20,7 @@ const RegisterForm = () => {
 
         <div className = "suggestion">
             <div style = {{marginRight: "1rem"}}>
-            Already have an account?
+                Already have an account?
             </div>
 
             <Link to='/login'>

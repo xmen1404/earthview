@@ -1,121 +1,124 @@
-.view-news h1{
+/* .news h1{
     font-size: 2.5rem;
 }
 
-.view-news h2{
+.news h2{
     font-size: 2rem;
-}
+} */
 
-
-.view-news .wrapper {
+.news{
     background: #140d14;
     color: #f1f1f1 !important;
     position: relative;
-    width: 100%;
 }
 
-.view-news .wrapper .header{
+.news .header{
     position: relative;
     /* z-index: 1; */
-    height:40vh;
+    height:75vh;
     color: #f1f1f1 !important;
 }
 
 
-.view-news .wrapper .title{
+.news .title{
     position: absolute;
-    top: 18vh;
-    left: 9vw;
+    top: 38vh;
+    left: 25vw;
     /* color: #ffffff */
     /* bottom: 0;
     margin: auto 0; */
 }
 
-.view-news .wrapper .category{
+.news .category{
     position: absolute;
-    top: 17vh;
-    left: 9vw;
+    top: 38vh;
+    left: 25vw;
     /* color: yellow; */
     color: darkorange;
     font-size:1.4rem;
 }
 
-.view-news .wrapper .time{
+
+.news .time{
     position: absolute;
-    top: 31vh;
-    left: 9vw;
+    top: 56vh;
+    left: 25vw;
+    font-size:1.4rem;
 }
 
-.view-news .wrapper .background{
+.news .background{
     position: absolute;
     margin-top: 0;
-    height: 60vh;
+    height: 100vh;
     /* z-index: 0; */
     /* transform: scale(1.15); */
     /* top: 0; */
 }
 
-.view-news .wrapper .background::after{
+.news .background::after{
     content: "";
     display: block;
     position: absolute;
     left: 0;
-    bottom: -5px;
-    height: 30vh;
+    bottom: -1px;
+    height: 40vh;
     width: 100%;
     background: linear-gradient(180deg,transparent,#140d14);
     /* z-index: -1; */
 }
 
-.view-news .wrapper figure{
+.news figure{
     width: 100%;
     height: 100%;
     margin-top: 3rem;
     margin-left: 0;
 }
 
-.view-news .wrapper figure:first-child{
+.news figure:first-child{
     margin-top:0;
 }
 
-
-.view-news .wrapper figure img{
+.news figure img{
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.view-news .wrapper figure:first-child img{
+.news figure:first-child img{
     opacity: 0.35;
 }
 
 
-.view-news .wrapper .body{
+.news .body{
     position: relative;
     /* z-index: 1; */
     /* margin-top: -5rem; */
     /* width: 60%; */
     text-align: left;
-    line-height: 2rem;
     padding-bottom: 1rem;
 }
 
 
-.view-news .wrapper .body p, .view-news .wrapper .body h2, .view-news .wrapper .body h3{
-    padding-left: 9vw;
-    width: 60%;
+.news .body p{
+    line-height: 2rem;
 }
 
-.view-news .wrapper .body span{
+
+.news .body p, .news .body h2, .news .body h3{
+    padding-left: 25vw;
+    width: 50%;
+}
+
+.news .body span{
     color: #f1f1f1 !important;
 }
 
-.view-news .wrapper figcaption{
+.news figcaption{
     text-align: center;
     font-size: 0.8rem;
-    margin-left: 9vw;
-    padding-bottom: 0.5rem;
+    margin-left: 25vw;
+    padding: 1rem 0;
     margin-bottom: 3rem;
-    width: 60%;
+    width: 50%;
     border-bottom: 1px solid #343434;
 }

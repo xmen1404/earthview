@@ -9,7 +9,7 @@ const header = ()=>{
         <div className="menu">
             <ul>
                 <li><a href="#">Quản lí thành viên</a> </li>
-                <li><a href="#">Quản lí chuyên mục</a> </li>
+                <li><a href="/admin/categories">Quản lí chuyên mục</a> </li>
                 <li><a href="/admin/news">Quản lí bài viết</a> </li>
                 <li><a href="#">Quản lí bình luận</a> </li>
             </ul>

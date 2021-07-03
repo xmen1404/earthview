@@ -1,0 +1,10 @@
+.categoryList{
+    display: flex;
+    /* width: 100vw; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+    margin: 5rem 0 5rem 10rem;
+}

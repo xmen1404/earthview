@@ -14,4 +14,9 @@ router.post('/', verifyToken, controller.createCategory);
 // @access pravate - admin
 router.get('/', verifyToken, controller.getCategory);
 
+// @route DELETE api/categories
+// #desc delete category
+// @access private - login xong mới thấy
+router.delete('/:id', verifyToken, controller.deleteCategory);
+
 module.exports = router;

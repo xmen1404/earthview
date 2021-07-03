@@ -1,0 +1,23 @@
+.categoryItem{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 25%;
+    margin-bottom: 1.5rem;
+}
+
+
+.categoryItem .icon{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 8px;
+}
+
+.categoryItem .information{
+    height: 5rem;
+    padding: 1rem 0;
+    margin-left: 1rem;
+}
+
+.categoryItem .information .name{
+    color: #000000;
+}

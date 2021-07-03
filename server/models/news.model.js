@@ -14,7 +14,7 @@ const newsSchema = new Schema({
         type: String,
         required: true
     },
-    description:{
+    background:{
         type: String,
         required: true
     },
@@ -22,6 +22,10 @@ const newsSchema = new Schema({
         type: String,
         required: true
     },
+    date:{
+        type: String, 
+        required: true
+    }
     // body:{
         
     //     type: String,

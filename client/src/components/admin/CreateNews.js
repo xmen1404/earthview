@@ -1,28 +1,39 @@
-import React , {useState, useEffect} from 'react';
+import React , {useState, useEffect, useContext} from 'react';
+import {CategoryContext} from "../../contexts/CategoryContext";
 
 import Header from "./Header.js";
 import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
 import axios from 'axios';
-import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
+// import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
 import Ckeditor from '../ckeditor/Ckeditor';
 import News from '../layout/News';
+import {NewsContext} from "../../contexts/NewsContext";
 
 const CreateNews = () => {
+    const {createNews} = useContext(NewsContext);
+    const {categoryList} = useContext(CategoryContext);
+
+
+    // local state
+
     const [state, setState] = useState({
-        category: "",
+        category: {},
         title: "",
-        description: "",
+        background: "",
         content:"",
-        categoryList: [],
         result:""
     })
+
+    // const [curCategory, setCurCategory] = useState("");
+
+    // console.log(categoryList);
     
 
     const view = () => {
-        const {category, title, description, content} = state;
+        const {category, title, background, content} = state;
 
-        console.log("debug", title, description, content);
+        // console.log("debug", title, background, content);
 
         const today = new Date();
         // const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -30,7 +41,7 @@ const CreateNews = () => {
         // console.log(date);
 
         const result = {
-            category, title, description, content,
+            category, title, background, content,
             author: "admin", // still harsh code
             date:{
                 day: today.getDate(),
@@ -39,15 +50,44 @@ const CreateNews = () => {
             }
         };
 
+        console.log(result);
+
         setState({
             ...state,
             result: result
         })
     }
 
-    const createNews = () => {
 
+
+    const handleClick = async () => {
+        try{
+            const {category, title, background, content} = state;
+
+            const today = new Date();
+            
+            const data = {
+                "category": category.id,
+                "title": title,
+                "background": background,
+                "content": content,
+                "date": `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
+            }
+
+            const res = await createNews(data);
+
+            console.log("debug res", res);
+            
+            if(res.success){
+                console.log("good");
+                window.location.href = '/admin/news'; 
+                // history.push('/admin/categories');
+            }
+        }catch(err){
+            console.log(err);
+        }
     }
+
 
     const toTop = () => {
 
@@ -55,9 +95,22 @@ const CreateNews = () => {
 
     // const handleChange = ( event, editor , part) => {
     const handleChange = ( event , part, editor) => {
-        const data = part === "category" ? event.target.value: editor.getData();
+        console.log(event.target)
+        let index;
+        let label;
+        let value;
 
-        console.log("handling", part);
+        if(part === "category"){
+            index = event.nativeEvent.target.selectedIndex;
+            label = event.nativeEvent.target[index].text;
+            value = event.target.value;
+        }
+        const data = part === "category" ? {
+            name: label,
+            id: value
+        }: editor.getData();
+
+        // console.log("handling", part);
 
         setState({
             ...state,
@@ -69,47 +122,12 @@ const CreateNews = () => {
 
 
     useEffect(()=>{
-        getCategory();
-    }, [])
-
-    useEffect(()=>{
-        console.log("state change");
+        // console.log("state change");
         view();
-    }, [state.category, state.title, state.description, state.content])
-
-    const getCategory = async () => {
-        try{
-            const url = apiUrl + "/categories";
-            const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
-            
-            const res = await axios.get(url,{
-                headers:{
-                    Authorization: header
-                }
-            })
-
-            console.log("check res", res.data.categories);
-            let list = []
-            for(let category of res.data.categories){
-                // console.log("debug in for", category);
-                list.push({
-                    label: category.name,
-                    value: category.name
-                })
-            }
-
-            setState({
-                ...state,
-                categoryList: list
-            })
-
-        }catch(err){
-            console.log(err);
-        }
-    }
+    }, [state.category, state.title, state.background, state.content])
 
 
-    const {categoryList, result} = state;
+    const {result} = state;
 
     // console.log("debug list", categoryList);
 
@@ -130,7 +148,7 @@ const CreateNews = () => {
                         <select onChange={(event)=>handleChange(event, "category")}>
                             <option value="default">Choose category</option>
                             {categoryList.map((category)=>{
-                                return <option value={category.value}>{category.label}</option>
+                                return <option value={category.id}>{category.label}</option>
                             })}
                         </select>
                     </div>
@@ -144,11 +162,11 @@ const CreateNews = () => {
                         ></Ckeditor>
                     </div>
 
-                    <div className = "description">
-                        <h2>Short description</h2>
+                    <div className = "background">
+                        <h2>Background image</h2>
                         <Ckeditor 
-                                    // initialData = "short-description" 
-                                    state = "description"
+                                    // initialData = "short-background" 
+                                    state = "background"
                                     handleChange = {handleChange}
                         ></Ckeditor>
                     </div>
@@ -162,7 +180,7 @@ const CreateNews = () => {
                         ></Ckeditor>
                     </div>
 
-                    <Button handleClick = {createNews}
+                    <Button handleClick = {handleClick}
                     margin =  "1.5rem 1rem 2rem 0"
                     bgcolor = "#3B5998" 
                     height = "2.3rem" 
