@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useParams, useContext, useState} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import '../../styles/view/news.css';
@@ -15,6 +16,8 @@ const News = (props)=>{
         
         const res = await getNewsById(id);
         const data = res.news;
+
+        // console.log(data);
 
         await setData(data);
         setLoading(false);

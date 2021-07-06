@@ -1,6 +1,8 @@
+/* Version 2 */
 .banner{
     width: 100vw;
-    height: 95vh;
+    height: 100vh;
+    font-size: 1.4rem;
     /* position: relative; */
     /* background: url('https://a0.muscache.com/im/pictures/6dcea824-1228-4d91-b78f-6953cd1efed7.jpg?im_w=1920') no-repeat center center/cover; */
 }
@@ -15,9 +17,11 @@
 /* Slideshow */
 
 .banner .slideshow {
-    margin: 0 auto;
+    margin: 0 1rem 0 2rem;
     overflow: hidden;
-    max-width: 100vw;
+    /* max-width: 100vw; */
+    border-radius: 1rem 1rem 1.5rem 1.5rem;
+    position: relative;
 }
 
 .banner .slideshow .slideshowSlider {
@@ -28,7 +32,7 @@
 .banner .slideshow .slideshowSlider .slide {
     display: inline-block;
 
-    height: 90vh;
+    height: 84vh;
     width: 100%;
     /* border-radius: 40px; */
 }
@@ -39,35 +43,89 @@
     text-align: center; 
     /* position: relative; */
     position: absolute;
-    left: 9rem;
-    bottom: 6rem;
+    /* left: 9rem; */
+    bottom: 1.9rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 50vw;
 
 }
 
 .slideshowDot {
     display: inline-block;
-    height: 0.7rem;
-    width: 0.7rem;
-    border-radius: 50%;
+    height: 0.3rem;
+    width: 9rem;
+    /* border-radius: 50%; */
 
     cursor: pointer;
     margin: 15px 7px 0px;
 
-    background-color: #595959;
+    /* background-color: #595959; */
+    background-color: rgba(256, 256, 256, 0.5);
     /* background-color: #ffffff */
+    /* border: 1px solid rgba(256, 256, 256, 0.5); */
+    /* position: relative; */
 }
 
-.slideshowDot.active {
+
+.slideshowDot .after{
+    width: 0;
+    /* width: 100%; */
+    height: 100%;
+    /* background-color: #000000; */
+    background-color: #ffffff;
+    /* transition-duration: 2s;
+    transition-timing-function: linear; */
+    /* transition-delay: 1s; */
+    
+}
+
+.slideshowDot.active .after{
+    width: 100%;
+    transition: all 7s;
+    transition-timing-function: linear;
+}
+
+/* .slideshowDot::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: auto; 
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #000000;
+    transition: .25s;
+} */
+
+.slideshowDot::before .active {
     /* background-color: #6a0dad; */
     /* background-color: #3B5998; */
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
+    width: 100%;
+    left: 0;/*change here*/
+    right: auto;/*change here*/
 }
+
+
 
 
 .banner .header{
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100vw;
+    /* transition: 1s; */
 }
 
 
@@ -76,36 +134,40 @@
 }
 
 .banner .header .navbar{
-    height: 7rem !important;
-    /* padding: 0 4rem; */
+    /* height: 6.3rem !important; */
+    height: 6.3rem;
+    padding: 0 1rem 0 4rem;
+    background-color: #ffffff;
     display: flex;
     flex-direction: row;
-    font-size: 1.2rem;
+    transition: 0.7s;
+    /* font-size: 1.2rem; */
+}
+
+.banner .tmpHeader{
+    /* height: 6.3rem !important; */
+    height: 6.3rem;
+    /* padding: 0 1rem 0 4rem; */
 }
 
 .banner .header .navbar .left{
-    width: 30%;
-    height: 100%;
-    color: #ffffff;
-    /* padding-top:1.5rem; */
-    /* font-size: 1.5rem; */
-    /* position: relative; */
-    /* background-color: #000000; */
-}
-
-.banner .header .navbar .left img{
-    /* position: absolute;
-    top: 2rem; */
-    left: 0;
-    object-fit: cover;
-}
-
-.banner .header .navbar .center{
-    width: 40%;
+    width: 16%;
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+
+.banner .header .navbar .center{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     /* padding-left: 3rem; */
     /* background-color: green; */
@@ -116,11 +178,11 @@
 .banner .header .navbar .center .item{
     position: relative;
     /* padding: 2rem 3rem 0 0; */
-    margin: 0 3rem 0 0;
+    margin: 0 2rem 0 0;
 }
 
 .banner .header .navbar .center .item span{
-    color: #ffffff;
+    /* color: #ffffff; */
     /* font-size: 1.2rem; */
 }
 
@@ -154,26 +216,43 @@
 
 
 .banner .header .navbar .right{
-    width: 30%;
+    max-width: 50%;
     /* height: 100%; */
     /* background-color: blue; */
     display: flex;
     flex-direction: row;
-    color: #ffffff;
+    /* color: #ffffff; */
     /* justify-content: end; */
     justify-content: flex-end;
     align-items: center;
-    padding-right: 2rem;
+    /* padding-right: 2rem; */
 }
 
-.banner .header .navbar .right .auth{
-    /* margin: 2rem 0; */
-    padding: 0.6rem;
-    margin-right: 2rem;
-    /* background: #333333; */
-    background: #3B5998;
+.banner .header .navbar .right .right-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1.5px solid #797979;
     border-radius: 0.5rem;
-    /* float: ""; */
-    /* color: ""; */
-    /* height: ""; */
+    padding: 0.4rem 0.7rem;
+}
+
+.banner .header .navbar .right .right-button .hamburger{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 1.3rem;
+}
+
+.banner .header .navbar .right .right-button .hamburger > div {
+    width: 1.3rem;
+    height: 2.7px;
+    background-color: #222222;
+    /* margin: 0.2rem 0; */
+}
+
+.banner .header .navbar .right .right-button .avatar{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-left:0.5rem;
 }
