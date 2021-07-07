@@ -23,6 +23,10 @@ module.exports.createNews = async (req, res) => {
     }
 
     try{
+        // const path = req.file.path.replace(/\\/g, "/");
+        // const backgroundPath = "http://localhost:5000/" + path;
+
+
         const newNews = new NewsModel({
             user: req.userId,
             category: category,

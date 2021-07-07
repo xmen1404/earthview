@@ -8,7 +8,8 @@ import Button from "../button/Button";
 import p1 from "../../assets/p1.PNG";
 import p2 from "../../assets/p2.PNG";
 import p3 from "../../assets/p3.PNG";
-import p4 from "../../assets/p4.PNG";
+// import p4 from "../../assets/p4.PNG";
+import tmpImage from "../../assets/upload-1625620573031";
 
 const Banner = () => {
     // const src = "https://a0.muscache.com/im/pictures/5489a694-471c-43eb-b865-ba4c837e0540.jpg?im_q=highq&amp;im_w=720";
@@ -16,7 +17,7 @@ const Banner = () => {
         "https://a0.muscache.com/im/pictures/6dcea824-1228-4d91-b78f-6953cd1efed7.jpg?im_w=1920",
         p1,
         p2,
-        p3,
+        tmpImage,
     ];
     const delay = 7000;
 

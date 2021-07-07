@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const multiparty = require('connect-multiparty');
 
 const verifyToken = require("../middleware/auth");
+const upload = require("../upload/upload");
 const controller = require("../controllers/news.controller");
 
 // @route POST api/news

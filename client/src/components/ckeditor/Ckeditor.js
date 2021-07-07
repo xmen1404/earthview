@@ -5,6 +5,7 @@ import React , {useState, useEffect} from 'react';
 // import {CKEditor} from 'ckeditor4-react';
 // import CKEditor from 'ckeditor4-react-advanced';
 // import CKEDITOR from 'ckeditor4-react-advanced';
+import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
 
 const Ckeditor = (props) => {
 
@@ -21,7 +22,7 @@ const Ckeditor = (props) => {
                 'Outdent', 'Indent', 'Alignment' ,'|',
                 'BulletedList', 'NumberedList', '|',
                 'BlockQuote', '|',
-                'CKFinder', 'Link', '|',
+                'uploadImage', 'Link', '|',
                 'InsertTable', 'TodoList', '|',
                 'Code', 'CodeBlock', '|',
                 'ImageCaption'
@@ -99,6 +100,32 @@ const Ckeditor = (props) => {
                 { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
                 
             ]
+        },
+
+        // simpleUpload:{
+        //     uploadUrl: apiUrl + '/uploads',
+        //     headers: {
+        //         // 'X-CSRF-TOKEN': 'CSRF-Token',
+        //         'Content-Type': 'application/json',
+        //         'Authorization': "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME),
+        //     }
+            
+        // },
+
+        // uploadImage:{
+        //     uploadUrl: apiUrl + '/uploads',
+        //     headers: {
+        //         // 'X-CSRF-TOKEN': 'CSRF-Token',
+        //         Authorization: "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+        //     },
+        // },
+
+        ckfinder:{
+            uploadUrl: apiUrl + '/uploads',
+            headers: {
+                // 'X-CSRF-TOKEN': 'CSRF-Token',
+                Authorization: "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+            }
         }
 
     };
