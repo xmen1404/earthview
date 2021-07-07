@@ -105,10 +105,21 @@ const CreateNews = () => {
             label = event.nativeEvent.target[index].text;
             value = event.target.value;
         }
-        const data = part === "category" ? {
+
+
+        let data = part === "category" ? {
             name: label,
             id: value
         }: editor.getData();
+
+
+        if(part === "background"){
+            console.log("setting background", data);
+            data = data.split("src=\"").pop().split("\"")[0];
+            // console.log("checking url", data.split("src=\"").pop().split("\"")[0]);
+        }
+
+        // data = part === "background"? data.split("src=\"").pop().split("\"")[0] : data;
 
         // console.log("handling", part);
 

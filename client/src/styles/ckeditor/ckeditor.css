@@ -1,0 +1,50 @@
+/* Allows displaying multiple floating images in the same line.
+See https://github.com/ckeditor/ckeditor5/issues/9183#issuecomment-804988132 */
+.image-style-align-left,
+.image-style-align-right{
+    clear: none;
+}
+
+
+.image-style-side{
+    float: right;
+    margin-left: var(--ck-image-style-spacing);
+    max-width: 50%;
+}
+
+.image-style-align-left{
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    display: block;
+}
+
+
+.image-style-align-center{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+}
+
+
+
+.image-style-align-right{
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    display: block;
+}
+
+.text-tiny {
+    font-size: 0.7em;
+}
+
+.text-small {
+    font-size: 0.85em;
+}
+
+.text-big {
+    font-size: 1.4em;
+}
+
+.text-huge {
+    font-size: 1.8em;
+}

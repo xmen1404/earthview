@@ -10,16 +10,23 @@ const News = (props)=>{
         <h1>View</h1>
         {!loading && <div className = "wrapper">
             <div className = 'background'>
-                    {data.background ? ReactHtmlParser(data.background) : ""}
+                    {/* {data.background ? ReactHtmlParser(data.background) : ""} */}
+                    {data.background ? 
+                    <figure class = "image">
+                        <img src = {data.background}></img>
+                    </figure>: ""
+                    }
             </div>
 
             <div className = 'header'>
-                <div className = 'category'>{data.category.name}</div>
-
-                <div className = 'time'>Published on {data.date.day+'-'+data.date.month+'-'+data.date.year}</div>
-
-                <div className = 'title'>
-                    {data.title ? ReactHtmlParser(data.title) : ""}
+                <div className ="information">
+                    <div className = 'category'>{data.category.name}</div>
+                    
+                    <div className = 'title'>
+                        {data.title ? ReactHtmlParser(data.title) : ""}
+                    </div>
+                    
+                    <div className = 'time'>Published on {data.date.day+'-'+data.date.month+'-'+data.date.year}</div>
                 </div>
 
                 {/* <div className = 'author'>

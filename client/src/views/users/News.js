@@ -29,16 +29,23 @@ const News = (props)=>{
     return <div className = 'news'>
         {!loading && <div>
             <div className = 'background'>
-                    {data.background ? ReactHtmlParser(data.background) : ""}
+                    {/* {data.background ? ReactHtmlParser(data.background) : ""} */}
+                    {data.background ? 
+                    <figure class = "image">
+                        <img src = {data.background}></img>
+                    </figure>: ""
+                    }
             </div>
 
             <div className = 'header'>
-                <div className = 'category'>{data.category.name}</div>
-
-                <div className = 'time'>Published on {data.date}</div>
-
-                <div className = 'title'>
-                    {data.title ? ReactHtmlParser(data.title) : ""}
+                <div className ="information">
+                    <div className = 'category'>{data.category.name}</div>
+                    
+                    <div className = 'title'>
+                        {data.title ? ReactHtmlParser(data.title) : ""}
+                    </div>
+                    
+                    <div className = 'time'>Published on {data.date}</div>
                 </div>
 
                 {/* <div className = 'author'>
