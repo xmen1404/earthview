@@ -4,7 +4,6 @@ import {Link, useHistory} from 'react-router-dom'
 import { useState, useContext } from 'react'
 import {AuthContext} from "../../contexts/AuthContext"
 import "../../styles/auth/auth.css";
-import AlertMessage from '../layout/AlertMessage'
 
 const LoginForm = () => {
     // context
@@ -18,8 +17,6 @@ const LoginForm = () => {
         username: '',
         password: ''
     })
-
-    const [alert, setAlert] = useState(null)
 
     const {username,password } = loginForm
 
@@ -35,7 +32,7 @@ const LoginForm = () => {
             if(loginData.success){
                 history.push('/');
             } else {
-                setAlert({type: 'danger', message: loginData.message})
+                
             }
 
         } catch (error){
@@ -45,7 +42,6 @@ const LoginForm = () => {
 
     return <div className = "auth-form">
         <Form className='my-4' onSubmit={login}>
-            <AlertMessage info={alert}/>
             <Form.Group>
                 <Form.Control 
                                 type = 'text' 
