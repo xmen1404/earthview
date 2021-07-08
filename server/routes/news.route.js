@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const multiparty = require('connect-multiparty');
+// const multiparty = require('connect-multiparty');
 
 const verifyToken = require("../middleware/auth");
 const upload = require("../upload/upload");
