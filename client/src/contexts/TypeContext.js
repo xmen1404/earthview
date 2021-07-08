@@ -3,42 +3,51 @@ import axios from 'axios'
 import {authReducer} from '../reducers/authReducer'
 import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from './constants'
 
-export const NewsContext = createContext();
+export const TypeContext = createContext();
 
 
 // bắt đầu cái kho state
-const NewsContextProvider = ({children}) => {
-    // const [categoryList, setCategoryList] = useState([])
+const TypeContextProvider = ({children}) => {
+    const [typeList, setTypeList] = useState([]);
     // const [category, setCategory] = useState("");
 
 
-    // useEffect(async ()=>{
-    //     // await getCategory();
-    // }, [])
+    useEffect(async ()=>{
+        await getType();
+    }, [])
 
 
-    const getNews = async () => {
+    const getType = async () => {
         try{
-            const url = apiUrl + "/news";
+            const url = apiUrl + "/types";
             const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
-
-            const res = await axios.get(url, {
-                headers:{
-                    'Authorization': header
-                },
-            })
             
-          
-            return res.data;
+            const res = await axios.get(url,{
+                headers:{
+                    Authorization: header
+                }
+            })
+
+            // console.log("check res", res.data.categories);
+
+            let list = []
+
+            for(let type of res.data.types){
+                // console.log("debug in for", category);
+                list.push({
+                    name: type.name,
+                    id: type._id
+                })
+            }
+
+            await setTypeList(list);
+
+            // console.log("debug type", list);
+
+            // return(list);
 
         }catch(err){
-            if(err.response.data){
-                // console.log(err.response.data)
-                return err.response.data
-            }
-            else{  
-                return {success: false, message: err.message}
-            }
+            console.log(err);
         }
     }
 
@@ -47,9 +56,9 @@ const NewsContextProvider = ({children}) => {
 
 
 
-    const createNews = async (data) => {
+    const addType = async (data) => {
         try{
-            const url = apiUrl + "/news";
+            const url = apiUrl + "/types";
             const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
 
             const res = await axios.post(url, data, {
@@ -74,18 +83,18 @@ const NewsContextProvider = ({children}) => {
     }
 
 
-    const getNewsById = async (id) => {
+    const deleteType = async (id) => {
         try{
-            const url = apiUrl + "/news/"+ id;
+            const url = apiUrl + "/types/"+ id;
             const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
 
-            const res = await axios.get(url, {
+            const res = await axios.delete(url, {
                 headers:{
                     'Authorization': header
                 },
             })
             
-          
+            // console.log(res.success);
             return res.data;
 
         }catch(err){
@@ -100,17 +109,15 @@ const NewsContextProvider = ({children}) => {
     }
 
 
-    const newsContextData = {
-        // categoryList,
-        // getCategory,
-        getNewsById,
-        createNews,
-        getNews
-        // deleteNews
+    const typeContextData = {
+        typeList,
+        getType,
+        addType,
+        deleteType
     }
 
-    return (<NewsContext.Provider  value = {newsContextData}>{children}</NewsContext.Provider>)
+    return (<TypeContext.Provider  value = {typeContextData}>{children}</TypeContext.Provider>)
 
 }
 
-export default NewsContextProvider;
+export default TypeContextProvider;

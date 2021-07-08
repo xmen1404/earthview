@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useParams, useContext, useState} from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import '../../styles/view/news.css';
+import '../../styles/views/news.css';
 import {NewsContext} from "../../contexts/NewsContext";
 
 const News = (props)=>{

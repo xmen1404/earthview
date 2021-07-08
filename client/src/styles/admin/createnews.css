@@ -23,7 +23,7 @@
     padding-left: 0 !important;
 } */
 
-.create-news .wrapper .design .left .title,.background,.content{
+.create-news .wrapper .design .left .title, .create-news .wrapper .design .left .background, .create-news .wrapper .design .left .content{
     margin-top: 2rem;
 }
 
@@ -40,7 +40,7 @@
 
 
 
-.category select{
+.select-box select{
     height: 2.5rem;
     width: 100%;
     max-width: 14rem;

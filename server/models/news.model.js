@@ -10,6 +10,10 @@ const newsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "categories"
     },
+    type:{
+        type: Schema.Types.ObjectId,
+        ref: "types"
+    },
     title:{
         type: String,
         required: true

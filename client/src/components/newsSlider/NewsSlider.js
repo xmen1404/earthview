@@ -44,7 +44,7 @@ const NewsSlider = () => {
         <div className="newsSlider-slideshow">
             <div
                 className="newsSlider-slideshowSlider"
-                style={{ transform: `translate3d(${-index * 20}%, 0, 0)` }}
+                style={{ transform: `translate3d(${-index * 25.35}%, 0, 0)` }}
             >
                 {newsImage.map((imageUrl, index) => (
                     <div
@@ -91,8 +91,10 @@ const NewsSlider = () => {
 
 
 
-    <div className = {lClass}></div>
-    <div className = {rClass}></div>
+    <div className = "next-item">
+        <div className = {lClass}></div>
+        <div className = {rClass}></div>
+    </div>
 
     <div className = "arrow-left">
         <img 

@@ -1,4 +1,4 @@
-import React , {useState, useEffect, useRef} from 'react';
+import React , {useState, useEffect, useRef, useContext} from 'react';
 import "../../styles/banner/banner.css"
 import logo from "../../assets/logo.png";
 import "../../styles/button/button.css";
@@ -11,18 +11,24 @@ import p3 from "../../assets/p3.PNG";
 // import p4 from "../../assets/p4.PNG";
 import tmpImage from "../../assets/upload-1625620573031";
 
-const Banner = () => {
+const Banner = (props) => {
     // const src = "https://a0.muscache.com/im/pictures/5489a694-471c-43eb-b865-ba4c837e0540.jpg?im_q=highq&amp;im_w=720";
-    const newsImage = [
-        "https://a0.muscache.com/im/pictures/6dcea824-1228-4d91-b78f-6953cd1efed7.jpg?im_w=1920",
-        p1,
-        p2,
-        tmpImage,
-    ];
-    const delay = 7000;
+    // const newsImage = [
+    //     "https://a0.muscache.com/im/pictures/6dcea824-1228-4d91-b78f-6953cd1efed7.jpg?im_w=1920",
+    //     p1,
+    //     p2,
+    //     tmpImage,
+    // ];
 
+    // const [newsImage, getNewsImage] = useState([]);
+    // const [isLoading, setLoading] = useState(true);
+    const [state, setState] = useState({
+        isLoading: true,
+        highlightedNews: []
+    });
 
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(-1);
+    const delay = index < 0? 50 : 7000;
     const timeoutRef = useRef(null);
   
     function resetTimeout() {
@@ -30,22 +36,40 @@ const Banner = () => {
         clearTimeout(timeoutRef.current);
       }
     }
+
+    useEffect(()=>{
+        // const data = await props.highlightedNews;
+        // console.log("debug here", props.highlightedNews);
+        
+        if(props.highlightedNews){
+            setState({
+                ...state,
+                // newsList: props.newsList,
+                highlightedNews: props.highlightedNews,
+                isLoading: false
+            })
+        }
+    }, [props]);
+
   
     useEffect(() => {
       resetTimeout();
 
-      timeoutRef.current = setTimeout(
-        () =>
-          setIndex((prevIndex) =>
-            prevIndex === newsImage.length - 1 ? 0 : prevIndex + 1
-          ),
-        delay
-      );
+      if(props.highlightedNews){
+        // console.log("debug 2", props.highlightedNews)
+        timeoutRef.current = setTimeout(
+            () =>
+              setIndex((prevIndex) =>
+                prevIndex === props.highlightedNews.length - 1 ? 0 : prevIndex + 1
+              ),
+            delay
+          );
+      }
   
       return () => {
         resetTimeout();
       };
-    }, [index]);
+    }, [index, props]);
 
 
     window.onscroll = function() {scrollFunction()};
@@ -55,7 +79,7 @@ const Banner = () => {
             // document.getElementsByClassName("navbar").style.fontSize = "30px";
             // document.getElementsByClassName("navbar");
             document.getElementsByClassName("navbar")[0].style.height =  "4.3rem";
-            console.log(document.getElementsByClassName("navbar")[0].style);
+            // console.log(document.getElementsByClassName("navbar")[0].style);
         } else {
             // document.getElementsByClassName("navbar").style.fontSize = "90px";
             // console.log(document.getElementsByClassName("navbar").style);
@@ -172,36 +196,37 @@ const Banner = () => {
             </div>
         </div>
 
-
-        <div className="slideshow">
-            <div
-                className="slideshowSlider"
-                style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-            >
-                {newsImage.map((imageUrl, index) => (
-                    <div
-                        className="slide"
-                        key={index}
-                        style={{ background: `url(${imageUrl}) no-repeat center center/cover` }}
-                    >
-                    </div>
-                ))}
+        {!state.isLoading && 
+            <div className="slideshow">
+                <div
+                    className="slideshowSlider"
+                    style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
+                >
+                    {state.highlightedNews.map((news, index) => (
+                        <div
+                            className="slide"
+                            key={index}
+                            style={{ background: `url(${news.background}) no-repeat center center/cover` }}
+                        >
+                        </div>
+                    ))}
+                </div>
+        
+                <div className="slideshowDots">
+                    {props.highlightedNews.map((_, idx) => (
+                        <div
+                            key={idx}
+                            className={`slideshowDot${index === idx ? " active" : ""}`}
+                            onClick={() => {
+                                setIndex(idx);
+                            }}
+                        >
+                            <div className = "after"></div>
+                        </div>
+                    ))}
+                </div>
             </div>
-    
-            <div className="slideshowDots">
-                {newsImage.map((_, idx) => (
-                    <div
-                        key={idx}
-                        className={`slideshowDot${index === idx ? " active" : ""}`}
-                        onClick={() => {
-                            setIndex(idx);
-                        }}
-                    >
-                        <div className = "after"></div>
-                    </div>
-                ))}
-            </div>
-        </div>
+        }
 
 
         {/* <Carousel></Carousel> */}

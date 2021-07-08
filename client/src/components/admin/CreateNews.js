@@ -9,16 +9,19 @@ import axios from 'axios';
 import Ckeditor from '../ckeditor/Ckeditor';
 import News from '../layout/News';
 import {NewsContext} from "../../contexts/NewsContext";
+import {TypeContext} from "../../contexts/TypeContext";
 
 const CreateNews = () => {
     const {createNews} = useContext(NewsContext);
     const {categoryList} = useContext(CategoryContext);
+    const {typeList} = useContext(TypeContext);
 
 
     // local state
 
     const [state, setState] = useState({
         category: {},
+        type: {},
         title: "",
         background: "",
         content:"",
@@ -50,24 +53,27 @@ const CreateNews = () => {
             }
         };
 
-        console.log(result);
+        // console.log(result);
 
         setState({
             ...state,
             result: result
         })
+
+        console.log(state);
     }
 
 
 
     const handleClick = async () => {
         try{
-            const {category, title, background, content} = state;
+            const {category, type, title, background, content} = state;
 
             const today = new Date();
             
             const data = {
                 "category": category.id,
+                "type": type.id,
                 "title": title,
                 "background": background,
                 "content": content,
@@ -100,14 +106,14 @@ const CreateNews = () => {
         let label;
         let value;
 
-        if(part === "category"){
+        if(part === "category" || part === "type"){
             index = event.nativeEvent.target.selectedIndex;
             label = event.nativeEvent.target[index].text;
             value = event.target.value;
         }
 
 
-        let data = part === "category" ? {
+        let data = part === "category" || part === "type" ? {
             name: label,
             id: value
         }: editor.getData();
@@ -121,7 +127,7 @@ const CreateNews = () => {
 
         // data = part === "background"? data.split("src=\"").pop().split("\"")[0] : data;
 
-        // console.log("handling", part);
+        console.log("handling", part);
 
         setState({
             ...state,
@@ -135,7 +141,7 @@ const CreateNews = () => {
     useEffect(()=>{
         // console.log("state change");
         view();
-    }, [state.category, state.title, state.background, state.content])
+    }, [state.category, state.type, state.title, state.background, state.content])
 
 
     const {result} = state;
@@ -155,11 +161,20 @@ const CreateNews = () => {
                         <Select options={categoryList} />   
                     </div> */}
 
-                    <div className = "category">
+                    <div className = "select-box">
                         <select onChange={(event)=>handleChange(event, "category")}>
                             <option value="default">Choose category</option>
                             {categoryList.map((category)=>{
                                 return <option value={category.id}>{category.label}</option>
+                            })}
+                        </select>
+                    </div>
+
+                    <div className = "select-box">
+                        <select onChange={(event)=>handleChange(event, "type")}>
+                            <option value="default">Choose type</option>
+                            {typeList.map((type)=>{
+                                return <option value={type.id}>{type.name}</option>
                             })}
                         </select>
                     </div>

@@ -1,12 +1,15 @@
 const NewsModel = require("../models/news.model");
 
 module.exports.createNews = async (req, res) => {
-    const {category, title, background, content, date} = req.body;
+    const {category, type, title, background, content, date} = req.body;
 
     // simple validation
     let errors = []
     if(!category){
         errors.push("category is required");
+    }
+    if(!type){
+        errors.push("type is required");
     }
     if(!title){
         errors.push("title is required");
@@ -30,6 +33,7 @@ module.exports.createNews = async (req, res) => {
         const newNews = new NewsModel({
             user: req.userId,
             category: category,
+            type: type,
             title: title,
             background: background,
             content: content,
@@ -50,7 +54,8 @@ module.exports.getNews = async (req,res) => {
     try{
         const news = await NewsModel.find()
                                     .populate("user", ["username"])
-                                    .populate("category", ["name"]);
+                                    .populate("category", ["name"])
+                                    .populate("type", ["name"]);
 
         return res.json({success: true, news: news });
         
@@ -65,7 +70,8 @@ module.exports.getNewsById = async (req, res) => {
         const condition = {_id: req.params.id, user: req.userId};
         const news = await NewsModel.findOne(condition)
                                     .populate("user", ["username"])
-                                    .populate("category", ["name"]);
+                                    .populate("category", ["name"])
+                                    .populate("type", ["name"]);
 
         if(!news){
             res.status(401).json({"success": false, "message": "news not found or user is not autherized"})

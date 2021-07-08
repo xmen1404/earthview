@@ -9,6 +9,7 @@ import Home from "./views/users/Home";
 import Auth from "./views/users/Auth";
 import AuthContextProvider from './contexts/AuthContext';
 import CategoryContextProvider from './contexts/CategoryContext';
+import TypeContextProvider from './contexts/TypeContext';
 import NewsContextProvider from './contexts/NewsContext';
 import News from './views/users/News';
 
@@ -16,23 +17,25 @@ function App() {
   return (
 
     <AuthContextProvider>
-        <CategoryContextProvider>
-          <NewsContextProvider>
-            <Router>
-              <Switch>
-                <Route path = "/admin" exact component = {Admin}/>
-                <Route path = "/admin/news" exact component = {NewsManagement}/>
-                <Route path = "/admin/news/create" exact component = {CreateNews}/>
-                <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
-                {/* <Route exact path='/' component={Landing}/> */}
-                <Route exact path='/' component={Home}/>
-                <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
-                <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} />
-                <Route path = "/news/:id" exact component = {News}/>
-              </Switch>
-            </Router>
-          </NewsContextProvider>
-        </CategoryContextProvider>
+        <TypeContextProvider>
+          <CategoryContextProvider>
+            <NewsContextProvider>
+              <Router>
+                <Switch>
+                  <Route path = "/admin" exact component = {Admin}/>
+                  <Route path = "/admin/news" exact component = {NewsManagement}/>
+                  <Route path = "/admin/news/create" exact component = {CreateNews}/>
+                  <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
+                  {/* <Route exact path='/' component={Landing}/> */}
+                  <Route exact path='/' component={Home}/>
+                  <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
+                  <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} />
+                  <Route path = "/news/:id" exact component = {News}/>
+                </Switch>
+              </Router>
+            </NewsContextProvider>
+          </CategoryContextProvider>
+        </TypeContextProvider>
     </AuthContextProvider>
   )
 }

@@ -16,6 +16,7 @@ const postRoute = require('./routes/post.route');
 const categoryRoute = require('./routes/category.route');
 const newsRoute = require('./routes/news.route');
 const uploadsRoute = require('./routes/uploads.route');
+const typeRoute = require('./routes/type.route');
 
 //CREATE EXPRESS APP
 app.use(express.json()); // đọc được bất cứ thứ gì gửi trong body (trong req body)
@@ -32,6 +33,8 @@ app.use('/api/auth', userRoute);
 app.use('/api/posts', postRoute);
 
 app.use('/api/categories', categoryRoute);
+
+app.use('/api/types', typeRoute);
 
 app.use('/api/news', newsRoute);
 
