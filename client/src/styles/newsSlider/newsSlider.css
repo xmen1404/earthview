@@ -2,7 +2,7 @@
 /* Slideshow */
 
 .newsSlider{
-    margin: 0 6rem 0 6rem;
+    /* margin: 0 6rem 0 6rem; */
 }
 
 .newsSlider-slideshow {
@@ -10,7 +10,7 @@
     overflow: hidden;
     max-width: 100vw;
     /* margin-left: 5rem; */
-    margin-bottom: 5rem;
+    /* margin-bottom: 5rem; */
     position: relative;
 }
 
@@ -34,7 +34,8 @@
 
 .newsSlider-slide .background{
     height: 19rem;
-    margin: 2rem 0;
+    margin: 0;
+    margin-bottom: 2rem;
     /* border-radius: 8px; */
     border-radius: 1rem;
 }
@@ -43,7 +44,7 @@
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 2rem;
+    top: 0;
     /* bottom: 0; */
     /* margin: auto 0; */
     right: 1rem;
@@ -90,30 +91,49 @@
 
 
 .newsSlider-slideshow .arrow-right{
-    position: absolute;
+    /* position: absolute;
     right: 1.6%;
     top: 0;
     bottom: 0;
     height: 10rem;
-    margin: auto;
+    margin: auto; */
+
     /* width: 0.5rem;
     height: 0.5rem; */
+
+    height: 100%;
+    /* margin: auto; */
+    /* margin: 0 auto; */
+    text-align: center;
+    position: relative;
 }
 
 .newsSlider-slideshow .arrow-right img{
     width: 1.5rem;
     height: 3rem;
-    margin-top: auto;
-    margin-bottom: auto;
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .newsSlider-slideshow .arrow-left{
-    position: absolute;
+    /* position: absolute;
     right: 5%;
     top: 0;
-    bottom: 0;
-    height: 10rem;
-    margin: auto;
+    bottom: 0; */
+    /* height: 10rem; */
+    /* height: 19rem;
+    line-height: 19rem; */
+    height: 100%;
+    /* margin: auto; */
+    /* margin: 0 auto; */
+    text-align: center;
+    position: relative;
+
     /* width: 0.5rem;
     height: 0.5rem; */
 }
@@ -121,8 +141,30 @@
 .newsSlider-slideshow .arrow-left img{
     width: 1.5rem;
     height: 3rem;
-    margin-top: auto;
-    margin-bottom: auto;
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0; */
+    /* margin: auto; */
+    /* left: 0;
+    right: 0;
+    margin: auto; */
+    /* margin-top: auto;
+    margin-bottom: auto; */
+
+    /* vertical-align: center;
+    display: inline; */
+
+    /* width: auto;
+    height: auto; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    /* margin: auto 0; */
+    /* align-content: center; */
     transform: scaleX(-1);
 }
 

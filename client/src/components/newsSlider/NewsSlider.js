@@ -92,11 +92,28 @@ const NewsSlider = () => {
 
 
     <div className = "next-item">
-        <div className = {lClass}></div>
-        <div className = {rClass}></div>
+        <div className = {lClass}>
+            <div className = "arrow-left">
+                <img 
+                    src = {RightArrow} onMouseOver = {()=>setLClass("left clear")} 
+                    onMouseOut = {()=>setLClass("left")}  
+                    onClick = {moveLeft}
+                ></img>
+            </div>
+        </div>
+        <div className = {rClass}>
+            <div className = "arrow-right">
+                <img 
+                    src = {RightArrow} 
+                    onMouseOver = {()=>setRClass("right clear")} 
+                    onMouseOut = {()=>setRClass("right")}
+                    onClick = {moveRight}
+                ></img>
+            </div>
+        </div>
     </div>
 
-    <div className = "arrow-left">
+    {/* <div className = "arrow-left">
         <img 
             src = {RightArrow} onMouseOver = {()=>setLClass("left clear")} 
             onMouseOut = {()=>setLClass("left")}  
@@ -111,7 +128,7 @@ const NewsSlider = () => {
             onMouseOut = {()=>setRClass("right")}
             onClick = {moveRight}
         ></img>
-    </div>
+    </div> */}
 
 
     

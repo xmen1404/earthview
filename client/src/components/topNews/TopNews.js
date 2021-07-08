@@ -1,5 +1,6 @@
 import { useState, useContextm, useEffect} from "react";
 import "../../styles/topNews/topNews.css";
+import Button from "../button/Button";
 
 
 
@@ -38,7 +39,7 @@ const TopNews = (props) => {
     }, [props]);
 
 
-    const imgUrl = "http://localhost:5000/upload-1625655773126";
+    // const imgUrl = "http://localhost:5000/upload-1625655773126";
     return <div className = "topnews">
         <div className = "header">
             <h2>Nổi bật</h2>
@@ -85,6 +86,20 @@ const TopNews = (props) => {
                 </div>
             </div>
         }
+
+        <Button
+            // marginRight = "2rem" 
+            padding = "0.5rem" 
+            // bgcolor = "#3B5998"
+            borderRadius = "1rem"
+            content = "Xem thêm"
+            border = "1px solid #000000"
+            bgcolor = "#f1f1f1"
+            margin = "3rem auto"
+            width = "10%" 
+        ></Button>
+        
+
     </div>
 }
 

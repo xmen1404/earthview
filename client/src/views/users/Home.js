@@ -1,9 +1,11 @@
 import React , {useState, useEffect, useRef, useContext} from 'react';
 import Banner from "../../components/banner/Banner";
-import CategoryList from "../../components/category/CategoryList";
-import NewsSlider from "../../components/newsSlider/NewsSlider";
+// import CategoryList from "../../components/category/CategoryList";
+// import NewsSlider from "../../components/newsSlider/NewsSlider";
 import {NewsContext} from "../../contexts/NewsContext";
 import TopNews from "../../components/topNews/TopNews";
+import Series from '../../components/series/Series';
+import RecentNews from '../../components/recentNews/RecentNews';
 import "../../styles/views/users/home.css";
 
 
@@ -38,8 +40,8 @@ const Home = () => {
                 // topNews = {state.topNews}
         ></Banner>
         <TopNews topNews = {state.topNews}></TopNews>
-        <CategoryList></CategoryList>
-        <NewsSlider></NewsSlider>
+        <Series></Series>
+        <RecentNews></RecentNews>
     </div>
 }
 
