@@ -13,7 +13,30 @@ Content-Type: application/json
 
 {
     "username": "Pam",
-    "password": "123456"
+    "password": "123456",
+    "role": "Admin"
+}
+
+###
+
+POST http://localhost:5000/admin 
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456",
+    "role": "Admin"
+}
+
+###
+
+POST http://localhost:5000/post 
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456",
+    "role": "Contributor"
 }
 
 ###
@@ -91,18 +114,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhM
 
 ###
 GET http://localhost:5000/api/news/60def40607a75dadcce4400f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
-
-###
-POST http://localhost:5000/api/types
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
-
-{
-    "name": "highlighted"
-}
-
-
-###
-GET http://localhost:5000/api/types
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
