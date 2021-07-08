@@ -18,6 +18,28 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:5000/admin 
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456",
+    "role": "Admin"
+}
+
+###
+
+POST http://localhost:5000/post 
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456",
+    "role": "Contributor"
+}
+
+###
+
 POST http://localhost:5000/api/posts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA

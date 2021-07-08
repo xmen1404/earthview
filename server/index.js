@@ -7,6 +7,7 @@ const PORT = 5000;
 
 const cors = require('cors');
 const morgan = require('morgan');
+const {authPage} = require('./middleware/page')
 
 const connectDB = require('./database/db');
 connectDB();
@@ -26,6 +27,14 @@ app.use(express.static("uploads"));
 
 app.get('/', (req, res)=>{
     res.send("hello world");
+});
+
+app.use('/admin', authPage('Admin'), (req,res) => {
+
+});
+
+app.use('/post', authPage(['Admin', 'Contributor']), (req,res) => {
+
 });
 
 app.use('/api/auth', userRoute);
