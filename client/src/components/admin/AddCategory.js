@@ -2,10 +2,14 @@ import {useContext, useState} from "react";
 import "../../styles/admin/addCategory.css";
 import Button from "../button/Button";
 import {CategoryContext} from "../../contexts/CategoryContext";
+import {BigCategoryContext} from "../../contexts/BigCategoryContext";
+import { SeriesContext } from "../../contexts/SeriesContext";
 
 
 const AddCategory = (props) => {
     const {addCategory} = useContext(CategoryContext);
+    const {addBigCategory} = useContext(BigCategoryContext);
+    const {addSeries} = useContext(SeriesContext);
 
     //local state
     const [state, setState] = useState({
@@ -24,7 +28,19 @@ const AddCategory = (props) => {
                 "description": description
             }
 
-            const res = await addCategory(data);
+            let res;
+
+            // const res = await addCategory(data);
+
+            if(props.type === 1){
+                res = await addBigCategory(data);
+            }
+            else if(props.type === 2){
+                res = await addCategory(data);
+            }
+            else if(props.type === 3){
+                res = await addSeries(data);
+            }
 
             console.log("debug res", res);
             
@@ -52,7 +68,7 @@ const AddCategory = (props) => {
                 <input 
                     type = "text" 
                     name = "name" 
-                    placeholder = "Enter a new category" 
+                    placeholder = "Enter name" 
                     onChange = {(event)=>{handleChange(event)}}>    
                 </input>
 

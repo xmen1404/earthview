@@ -1,10 +1,13 @@
 const NewsModel = require("../models/news.model");
 
 module.exports.createNews = async (req, res) => {
-    const {category, type, title, background, content, date} = req.body;
+    const {bigCategory, category, type, series, title, background, content, date} = req.body;
 
     // simple validation
     let errors = []
+    if(!bigCategory){
+        errors.push("topic is required");
+    }
     if(!category){
         errors.push("category is required");
     }
@@ -32,8 +35,10 @@ module.exports.createNews = async (req, res) => {
 
         const newNews = new NewsModel({
             user: req.userId,
+            bigCategory: bigCategory,
             category: category,
             type: type,
+            series: series,
             title: title,
             background: background,
             content: content,
@@ -54,8 +59,10 @@ module.exports.getNews = async (req,res) => {
     try{
         const news = await NewsModel.find().sort({ _id: -1 })
                                     .populate("user", ["username"])
+                                    .populate("bigCategory", ["name"])
                                     .populate("category", ["name"])
-                                    .populate("type", ["name"]);
+                                    .populate("type", ["name"])
+                                    .populate("series", ["name"]);
 
         return res.json({success: true, news: news });
         
@@ -70,8 +77,10 @@ module.exports.getNewsById = async (req, res) => {
         const condition = {_id: req.params.id, user: req.userId};
         const news = await NewsModel.findOne(condition)
                                     .populate("user", ["username"])
+                                    .populate("bigCategory", ["name"])
                                     .populate("category", ["name"])
-                                    .populate("type", ["name"]);
+                                    .populate("type", ["name"])
+                                    .populate("series", ["name"]);
 
         if(!news){
             res.status(401).json({"success": false, "message": "news not found or user is not autherized"})
@@ -88,10 +97,14 @@ module.exports.getNewsById = async (req, res) => {
 
 
 module.exports.updateNews = async (req, res)=>{
-    const {category, type, title, background, content, date} = req.body;
+    const {bigCategory, category, type, series, title, background, content, date} = req.body;
 
     // simple validation
     let errors = []
+
+    if(!bigCategory){
+        errors.push("category is required");
+    }
     if(!category){
         errors.push("category is required");
     }
@@ -116,8 +129,10 @@ module.exports.updateNews = async (req, res)=>{
     try{
         let updatedNews = {
             user: req.userId,
+            bigCategory: bigCategory,
             category: category,
             type: type,
+            series: series,
             title: title,
             background: background,
             content: content,

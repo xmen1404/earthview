@@ -2,10 +2,14 @@ import {useContext, useEffect, useState} from "react";
 import "../../styles/admin/listCategory.css";
 import Button from "../button/Button";
 import {CategoryContext} from "../../contexts/CategoryContext";
+import {BigCategoryContext} from "../../contexts/BigCategoryContext";
+import {SeriesContext} from "../../contexts/SeriesContext";
 
 
 const ListCategory = (props) => {
     const {categoryList, getCategory, deleteCategory} = useContext(CategoryContext);
+    const {bigCategoryList, getBigCategory, deleteBigCategory} = useContext(BigCategoryContext);
+    const {seriesList, getSeries, deleteSeries} = useContext(SeriesContext);
     // console.log(categoryList);
 
     const [curCategory, setCurCategory] = useState("");
@@ -23,10 +27,13 @@ const ListCategory = (props) => {
             let res;
 
             if(props.type === 1){
-                res = await deleteCategory(curCategory);
+                res = await deleteBigCategory(curCategory);
             }
             else if(props.type === 2){
-                res = await deleteBigCategory(curCategory);
+                res = await deleteCategory(curCategory);
+            }
+            else if(props.type === 3){
+                res = await deleteSeries(curCategory);
             }
 
             
@@ -44,15 +51,24 @@ const ListCategory = (props) => {
         <div className = "wrapper">
             <div className = "header">
                 <div className = "switch-type">
-                    <div className = {`type${props.type === 1 ? " active":""}`} onClick = {() => {props.setType(1)}}>Thể loại nhỏ</div>
-                    <div className = {`type${props.type === 2 ? " active":""}`} onClick = {() => {props.setType(2)}}>Thể loại lớn</div>
+                    <div className = {`type${props.type === 1 ? " active":""}`} onClick = {() => {props.setType(1)}}>Thể loại lớn</div>
+                    <div className = {`type${props.type === 2 ? " active":""}`} onClick = {() => {props.setType(2)}}>Thể loại nhỏ</div>
                     <div className = {`type${props.type === 3 ? " active":""}`} onClick = {() => {props.setType(3)}}>Series</div>
                 </div>
                 <select onChange = {(event)=>{handleChange(event)}} >
-                    <option value="default">Choose category</option>
-                    {categoryList.map((category, idx)=>{
-                        return <option value={category.id}>{category.label}</option>
+                    {props.type === 1 && <option value="default">Choose big category</option>}
+                    {props.type === 1 && bigCategoryList.map((category, idx)=>{
+                        return <option value={category.id}>{category.name}</option>
+                    })}
 
+                    {props.type === 2 && <option value="default">Choose category</option>}
+                    {props.type === 2 && categoryList.map((category, idx)=>{
+                        return <option value={category.id}>{category.name}</option>
+                    })}
+
+                    {props.type === 3 && <option value="default">Choose series</option>}
+                    {props.type === 3 && seriesList.map((category, idx)=>{
+                        return <option value={category.id}>{category.name}</option>
                     })}
                 </select>
             </div>

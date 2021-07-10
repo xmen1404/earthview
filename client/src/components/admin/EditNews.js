@@ -10,18 +10,24 @@ import Ckeditor from '../ckeditor/Ckeditor';
 import News from '../layout/News';
 import {NewsContext} from "../../contexts/NewsContext";
 import {TypeContext} from "../../contexts/TypeContext";
+import { BigCategoryContext } from '../../contexts/BigCategoryContext';
+import {SeriesContext} from '../../contexts/SeriesContext';
 
 const CreateNews = (props) => {
     const {updateNews} = useContext(NewsContext);
     const {categoryList} = useContext(CategoryContext);
     const {typeList} = useContext(TypeContext);
+    const {bigCategoryList} = useContext(BigCategoryContext);
+    const {seriesList} = useContext(SeriesContext);
 
 
     // local state
 
     const [state, setState] = useState({
+        bigCategory: {},
         category: {},
         type: {},
+        series: {},
         title: "",
         background: "",
         content:"",
@@ -42,7 +48,9 @@ const CreateNews = (props) => {
         const data = res.news;
 
         console.log("check data", data);
-        const {category, title, type, background, content} = data;
+        const {bigCategory, category, series, title, type, background, content} = data;
+
+        console.log("test rendering data", data);
 
         // console.log("debug", title, background, content);
 
@@ -52,7 +60,7 @@ const CreateNews = (props) => {
         // console.log(date);
 
         const result = {
-            category, title, background: background.split("src=\"").pop().split("\"")[0], content,
+            bigCategory, category, title, background: background.split("src=\"").pop().split("\"")[0], content,
             author: "admin", // still harsh code
             date:{
                 day: today.getDate(),
@@ -64,8 +72,10 @@ const CreateNews = (props) => {
 
         await setState({
             ...state,
+            bigCategory: bigCategory,
             category: category,
             type: type,
+            series: series,
             title: title,
             background: background,
             content: content,
@@ -82,7 +92,7 @@ const CreateNews = (props) => {
     
 
     const view = () => {
-        const {category, title, background, content} = state;
+        const {bigCategory, category, title, background, content} = state;
 
         // console.log("debug", title, background, content);
 
@@ -92,7 +102,7 @@ const CreateNews = (props) => {
         // console.log(date);
 
         const result = {
-            category, title, background: background.split("src=\"").pop().split("\"")[0], content,
+            bigCategory, category, title, background: background.split("src=\"").pop().split("\"")[0], content,
             author: "admin", // still harsh code
             date:{
                 day: today.getDate(),
@@ -108,14 +118,14 @@ const CreateNews = (props) => {
             result: result
         })
 
-        console.log(state);
+        // console.log(state);
     }
 
 
 
     const handleClick = async () => {
         try{
-            const {category, type, title, background, content} = state;
+            const {bigCategory, category, type, series, title, background, content} = state;
             const id = props.match.params.id;
 
 
@@ -124,15 +134,17 @@ const CreateNews = (props) => {
             const today = new Date();
             
             const data = {
+                "bigCategory": bigCategory._id,
                 "category": category._id,
                 "type": type._id,
+                "series": series._id,
                 "title": title,
                 "background": background,
                 "content": content,
                 "date": `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
             }
 
-            // console.log("check final", data);
+            console.log("check final", data);
 
             const res = await updateNews(id, data);
 
@@ -160,14 +172,14 @@ const CreateNews = (props) => {
         let label;
         let value;
 
-        if(part === "category" || part === "type"){
+        if(part === "category" || part === "type" || part === "bigCategory" || part === "series"){
             index = event.nativeEvent.target.selectedIndex;
             label = event.nativeEvent.target[index].text;
             value = event.target.value;
         }
 
 
-        let data = part === "category" || part === "type" ? {
+        let data = part === "category" || part === "type" || part === "bigCategory" || part === "series"? {
             name: label,
             _id: value
         }: editor.getData();
@@ -195,10 +207,11 @@ const CreateNews = (props) => {
     useEffect(()=>{
         // console.log("state change");
         view();
-    }, [state.category, state.type, state.title, state.background, state.content])
+    }, [state.bigCategory, state.category, state.type, state.series, state.title, state.background, state.content])
 
 
-    const {category, type, title, background, content, result} = state;
+    const {bigCategory, category, type, series, title, background, content, result} = state;
+    // console.log("check series", series);
 
     // console.log("debug list", categoryList);
 
@@ -214,25 +227,50 @@ const CreateNews = (props) => {
                     {/* <div className = "select-container">
                         <Select options={categoryList} />   
                     </div> */}
+                
+                    <div className = "option">
+                        <div className = "select-box">
+                            <select onChange={(event)=>handleChange(event, "category")}>
+                                <option value="default">Choose category</option>
+                                {categoryList.map((cur_category)=>{
+                                    // console.log("test cur cat", cur_category, category)
+                                    return cur_category.id === category? category._id:"" ? <option value={cur_category.id} selected>{cur_category.name}</option>
+                                                                        : <option value={cur_category.id}>{cur_category.name}</option>
+                                })}
+                            </select>
+                        </div>
 
-                    <div className = "select-box">
-                        <select onChange={(event)=>handleChange(event, "category")}>
-                            <option value="default">Choose category</option>
-                            {categoryList.map((cur_category)=>{
-                                return cur_category.id === category._id ? <option value={cur_category.id} selected>{cur_category.label}</option>
-                                                                    : <option value={cur_category.id}>{cur_category.label}</option>
-                            })}
-                        </select>
-                    </div>
+                        <div className = "select-box">
+                            <select onChange={(event)=>handleChange(event, "bigCategory")}>
+                                <option value="default">Choose topic</option>
+                                {bigCategoryList.map((cur_bigCategory)=>{
+                                    // console.log("test cur big cat", cur_bigCategory, bigCategory)
+                                    return cur_bigCategory.id === bigCategory? bigCategory._id:"" ? <option value={cur_bigCategory.id} selected>{cur_bigCategory.name}</option>
+                                                                        : <option value={cur_bigCategory.id}>{cur_bigCategory.name}</option>
+                                })}
+                            </select>
+                        </div>
 
-                    <div className = "select-box">
-                        <select onChange={(event)=>handleChange(event, "type")}>
-                            <option value="default">Choose type</option>
-                            {typeList.map((cur_type)=>{
-                                return cur_type.id === type._id ? <option value={cur_type.id} selected>{cur_type.name}</option>
-                                                                : <option value={cur_type.id}>{cur_type.name}</option>
-                            })}
-                        </select>
+                        <div className = "select-box">
+                            <select onChange={(event)=>handleChange(event, "type")}>
+                                <option value="default">Choose type</option>
+                                {typeList.map((cur_type)=>{
+                                    return cur_type.id === type?type._id:"" ? <option value={cur_type.id} selected>{cur_type.name}</option>
+                                                                    : <option value={cur_type.id}>{cur_type.name}</option>
+                                })}
+                            </select>
+                        </div>
+
+                        <div className = "select-box">
+                            <select onChange={(event)=>handleChange(event, "series")}>
+                                <option value="default">Choose series</option>
+                                {seriesList.map((cur_series)=>{
+                                    // console.log("test 2 thứ", cur_series, series)
+                                    return cur_series.id === series?series._id:"" ? <option value={cur_series.id} selected>{cur_series.name}</option>
+                                                                    : <option value={cur_series.id}>{cur_series.name}</option>
+                                })}
+                            </select>
+                        </div>
                     </div>
 
                     <div className = "title">

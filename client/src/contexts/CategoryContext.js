@@ -35,8 +35,7 @@ const CategoryContextProvider = ({children}) => {
             for(let category of res.data.categories){
                 // console.log("debug in for", category);
                 list.push({
-                    label: category.name,
-                    value: category.name,
+                    name: category.name,
                     id: category._id
                 })
             }

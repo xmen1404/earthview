@@ -6,6 +6,8 @@ const News = (props)=>{
     const {data} = props;
     const [loading, setLoading] = useState(false);
 
+    console.log("check data xem nào", data);
+
     return <div className = 'view-news'>
         <h1>View</h1>
         {!loading && <div className = "wrapper">
@@ -20,7 +22,9 @@ const News = (props)=>{
 
             <div className = 'header'>
                 <div className ="information">
-                    <div className = 'category'>{data.category.name}</div>
+
+                    {/* {data.bigCategory.name && <div> Hello mọi người</div>} */}
+                    <div className = 'category'>{data.category? data.category.name: ""} {data.bigCategory? data.bigCategory.name? data.bigCategory.name.toLowerCase():"":""}</div>
                     
                     <div className = 'title'>
                         {data.title ? ReactHtmlParser(data.title) : ""}

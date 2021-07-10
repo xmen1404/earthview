@@ -75,9 +75,10 @@ const ListNews = () => {
                 <th style={{width: "20%"}}>Title</th>
                 <th style={{width: "20%"}}>Description</th>
                 <th style={{width: "12%"}}>Chuyên mục</th>
-                <th style={{width: "12%"}}>Type</th>
-                <th style={{width: "12%"}}>Updated by</th>
-                <th style={{width: "12%"}}>Date</th>
+                <th style={{width: "9%"}}>Type</th>
+                <th style={{width: "9%"}}>Series</th>
+                <th style={{width: "9%"}}>Updated by</th>
+                <th style={{width: "9%"}}>Date</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -106,8 +107,9 @@ const ListNews = () => {
                             <td>{idx+1}</td>
                             <td>{news.title && news.title.includes("h1")? news.title.split(">")[1].split("<")[0] : "no title"}</td>
                             <td>{news.content ? news.content.split("</span>")[0].split(">").pop() : "no description"}</td>
-                            <td>{news.category ? news.category.name : "no category"}</td>
+                            <td>{news.category && news.bigCategory ? news.category.name + " " +news.bigCategory.name.toLowerCase() : "Không có chuyên mục"}</td>
                             <td>{news.type ? news.type.name : "no type"}</td>
+                            <td>{news.series ? news.series.name : "Không thuộc series nào"}</td>
                             <td>{news.user ? news.user.username : "no user"}</td>
                             <td>{news.date ? news.date : "no date"}</td>
                             <td><Button     

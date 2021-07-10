@@ -51,6 +51,8 @@ const NewsContextProvider = ({children}) => {
         try{
             const url = apiUrl + "/news";
             const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+            
+            // console.log("check data trước khi post news", data);
 
             const res = await axios.post(url, data, {
                 headers:{
@@ -104,6 +106,8 @@ const NewsContextProvider = ({children}) => {
         try{
             const url = apiUrl + "/news/"+ id;
             const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+
+            console.log("test update news", data);
 
             const res = await axios.put(url, data, {
                 headers:{

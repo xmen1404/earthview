@@ -6,13 +6,25 @@ const newsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
+    bigCategory:{
+        type: Schema.Types.ObjectId,
+        ref: "bigCategories",
+        default: null
+    },
     category:{
         type: Schema.Types.ObjectId,
-        ref: "categories"
+        ref: "categories",
+        default: null
     },
     type:{
         type: Schema.Types.ObjectId,
-        ref: "types"
+        ref: "types",
+        default: null
+    },
+    series:{
+        type: Schema.Types.ObjectId,
+        ref: "series",
+        default: null
     },
     title:{
         type: String,

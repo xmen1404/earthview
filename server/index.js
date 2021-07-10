@@ -15,6 +15,8 @@ connectDB();
 const userRoute = require('./routes/auth.route');
 const postRoute = require('./routes/post.route');
 const categoryRoute = require('./routes/category.route');
+const bigCategoryRoute = require('./routes/bigCategory.route');
+const seriesRoute = require('./routes/series.route');
 const newsRoute = require('./routes/news.route');
 const uploadsRoute = require('./routes/uploads.route');
 const typeRoute = require('./routes/type.route');
@@ -42,6 +44,10 @@ app.use('/api/auth', userRoute);
 app.use('/api/posts', postRoute);
 
 app.use('/api/categories', categoryRoute);
+
+app.use('/api/bigcategories', bigCategoryRoute);
+
+app.use('/api/series', seriesRoute);
 
 app.use('/api/types', typeRoute);
 
