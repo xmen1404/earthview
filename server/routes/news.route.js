@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const multiparty = require('connect-multiparty');
+const {authPage} = require("../middleware/page");
 
 const verifyToken = require("../middleware/auth");
 const upload = require("../upload/upload");
@@ -10,6 +11,7 @@ const controller = require("../controllers/news.controller");
 // @desc create news
 // @access private - admin
 router.post('/', verifyToken, controller.createNews);
+// router.post('/', verifyToken, authPage(['Admin', 'Contributor']), controller.createNews);
 
 // @route GET api/news
 // @desc get news list
@@ -20,5 +22,17 @@ router.get('/', verifyToken, controller.getNews);
 // #desc get news by id
 // @access private - login xong mới thấy
 router.get('/:id', verifyToken, controller.getNewsById);
+
+// @route PUT api/news
+// #desc update news
+// @access private - login xong mới thấy
+router.put('/:id', verifyToken, controller.updateNews);
+
+
+// @route DELETE api/news/id
+// #desc delete news
+// @access private - login xong mới thấy
+router.delete('/:id', verifyToken, controller.deleteNews);
+
 
 module.exports = router;

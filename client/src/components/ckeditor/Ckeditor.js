@@ -135,7 +135,7 @@ const Ckeditor = (props) => {
         <CKEditor
             editor={ Editor }
             config={ editorConfiguration }
-            // data={"<p>"+props.initialData+"</p>"}
+            data={props.initialData}
             onChange = {(event, editor)=> props.handleChange(event,props.state, editor)}
         />
     </div>

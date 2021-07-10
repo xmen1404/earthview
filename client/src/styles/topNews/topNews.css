@@ -19,7 +19,7 @@
     /* background-color: green; */
     width: 55%;
     height: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 .topnews .news-item .right{
@@ -44,11 +44,17 @@
     margin: 0 1.5rem;
     margin-left: 0;
     border-radius: 1.5rem;
+    object-fit: cover;
 }
 
 .topnews .news-item .right .item{
     margin-top: 2rem;
     /* border-top: 3px solid #000000; */
+    /* overflow-y: scroll; */
+}
+
+.topnews .news-item .right .item:first-child{
+    margin-top: 0.5rem;
 }
 
 .topnews .news-item .right .item .index{

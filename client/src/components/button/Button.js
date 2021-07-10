@@ -26,6 +26,7 @@ const Button = (props) => {
     if(props.paddingTop) styles.paddingTop = props.paddingTop;
     if(props.paddingBottom) styles.paddingBottom = props.paddingBottom;
     if(props.border) styles.border = props.border;
+    if(props.fontSize) styles.fontSize = props.fontSize;
     // if(props.borderRadius) styles.borderRadius = props.borderRadius;
 
     // console.log("debug style", styles);

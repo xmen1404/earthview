@@ -20,8 +20,14 @@ const ListCategory = (props) => {
 
     const handleClick = async () => {
         try{
+            let res;
 
-            const res = await deleteCategory(curCategory);
+            if(props.type === 1){
+                res = await deleteCategory(curCategory);
+            }
+            else if(props.type === 2){
+                res = await deleteBigCategory(curCategory);
+            }
 
             
             if(res.success){
@@ -37,6 +43,11 @@ const ListCategory = (props) => {
     return <div className="listcategory">
         <div className = "wrapper">
             <div className = "header">
+                <div className = "switch-type">
+                    <div className = {`type${props.type === 1 ? " active":""}`} onClick = {() => {props.setType(1)}}>Thể loại nhỏ</div>
+                    <div className = {`type${props.type === 2 ? " active":""}`} onClick = {() => {props.setType(2)}}>Thể loại lớn</div>
+                    <div className = {`type${props.type === 3 ? " active":""}`} onClick = {() => {props.setType(3)}}>Series</div>
+                </div>
                 <select onChange = {(event)=>{handleChange(event)}} >
                     <option value="default">Choose category</option>
                     {categoryList.map((category, idx)=>{

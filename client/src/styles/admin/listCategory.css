@@ -16,8 +16,35 @@
 
 .listcategory .wrapper .header{
     text-align: center;
-    padding: 2rem 0 0.5rem 0;
+    padding: 0 0 0.5rem 0;
 }
+
+
+.listcategory .wrapper .header .switch-type{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem 0 2rem 0;
+    border-bottom: 1px solid #898989;
+    padding-bottom: 1rem;
+}
+
+.listcategory .wrapper .header .switch-type .type{
+    width: 33.33%;
+    color: #3B5998;
+    font-weight: 500;
+}
+
+.listcategory .wrapper .header .switch-type .type:hover{
+    cursor: pointer;
+}
+
+.listcategory .wrapper .header .switch-type .active{
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
 
 .listcategory .wrapper .header select{
     height: 2.5rem;

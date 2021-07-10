@@ -33,7 +33,7 @@ const TopNews = (props) => {
                 // newsList: props.newsList,
                 topNews: props.topNews.slice(0,4),
                 isLoading: false,
-                topNewsBg: props.topNews[0].background
+                topNewsBg: props.topNews[0].background.split("src=\"").pop().split("\"")[0]
             })
         }
     }, [props]);
@@ -55,7 +55,7 @@ const TopNews = (props) => {
                         <div className = {`item${state.index === idx ? " onHover" : ""}`} onMouseEnter = {()=>{setState({
                             ...state,
                             index: idx,
-                            topNewsBg: news.background
+                            topNewsBg: news.background.split("src=\"").pop().split("\"")[0]
                         })}}>
                             <div className = "index">
                                 {idx < 9 ? "0"+(idx+1) : (idx+1)}

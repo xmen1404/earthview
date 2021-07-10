@@ -45,7 +45,7 @@ const Banner = (props) => {
             setState({
                 ...state,
                 // newsList: props.newsList,
-                highlightedNews: props.highlightedNews,
+                highlightedNews: props.highlightedNews.slice(0,4),
                 isLoading: false
             })
         }
@@ -60,7 +60,7 @@ const Banner = (props) => {
         timeoutRef.current = setTimeout(
             () =>
               setIndex((prevIndex) =>
-                prevIndex === props.highlightedNews.length - 1 ? 0 : prevIndex + 1
+                prevIndex === state.highlightedNews.length - 1 ? 0 : prevIndex + 1
               ),
             delay
           );
@@ -79,11 +79,13 @@ const Banner = (props) => {
             // document.getElementsByClassName("navbar").style.fontSize = "30px";
             // document.getElementsByClassName("navbar");
             document.getElementsByClassName("navbar")[0].style.height =  "4.3rem";
+            document.getElementsByClassName("navbar")[0].style.boxShadow = "0px 0.2rem 0.5rem #ababab";
             // console.log(document.getElementsByClassName("navbar")[0].style);
         } else {
             // document.getElementsByClassName("navbar").style.fontSize = "90px";
             // console.log(document.getElementsByClassName("navbar").style);
             document.getElementsByClassName("navbar")[0].style.height =  "6.3rem";
+            document.getElementsByClassName("navbar")[0].style.boxShadow = "none";
         }
     }
 
@@ -206,14 +208,14 @@ const Banner = (props) => {
                         <div
                             className="slide"
                             key={index}
-                            style={{ background: `url(${news.background}) no-repeat center center/cover` }}
+                            style={{ background: `url(${news.background.split("src=\"").pop().split("\"")[0]}) no-repeat center center/cover` }}
                         >
                         </div>
                     ))}
                 </div>
         
                 <div className="slideshowDots">
-                    {props.highlightedNews.map((_, idx) => (
+                    {state.highlightedNews.map((_, idx) => (
                         <div
                             key={idx}
                             className={`slideshowDot${index === idx ? " active" : ""}`}

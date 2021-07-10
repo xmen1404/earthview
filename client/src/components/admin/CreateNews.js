@@ -44,7 +44,7 @@ const CreateNews = () => {
         // console.log(date);
 
         const result = {
-            category, title, background, content,
+            category, title, background: background.split("src=\"").pop().split("\"")[0], content,
             author: "admin", // still harsh code
             date:{
                 day: today.getDate(),
@@ -119,11 +119,11 @@ const CreateNews = () => {
         }: editor.getData();
 
 
-        if(part === "background"){
-            console.log("setting background", data);
-            data = data.split("src=\"").pop().split("\"")[0];
-            // console.log("checking url", data.split("src=\"").pop().split("\"")[0]);
-        }
+        // if(part === "background"){
+        //     console.log("setting background", data);
+        //     data = data.split("src=\"").pop().split("\"")[0];
+        //     // console.log("checking url", data.split("src=\"").pop().split("\"")[0]);
+        // }
 
         // data = part === "background"? data.split("src=\"").pop().split("\"")[0] : data;
 

@@ -100,12 +100,68 @@ const NewsContextProvider = ({children}) => {
     }
 
 
+    const updateNews = async (id, data) => {
+        try{
+            const url = apiUrl + "/news/"+ id;
+            const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+
+            const res = await axios.put(url, data, {
+                headers:{
+                    'Authorization': header
+                },
+            })
+            
+            // console.log(res.success);
+            return res.data;
+
+        }catch(err){
+            if(err.response.data){
+                // console.log(err.response.data)
+                return err.response.data
+            }
+            else{  
+                return {success: false, message: err.message}
+            }
+        }
+    }
+
+
+    const deleteNews = async (id) => {
+        try{
+            const url = apiUrl + "/news/"+ id;
+            const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+
+            const res = await axios.delete(url, {
+                headers:{
+                    'Authorization': header
+                },
+            })
+            
+            // console.log(res.success);
+            return res.data;
+
+        }catch(err){
+            if(err.response.data){
+                // console.log(err.response.data)
+                return err.response.data
+            }
+            else{  
+                return {success: false, message: err.message}
+            }
+        }
+    }
+
+    
+
+
     const newsContextData = {
         // categoryList,
         // getCategory,
         getNewsById,
         createNews,
-        getNews
+        getNews,
+        updateNews,
+        deleteNews
         // deleteNews
     }
 

@@ -12,6 +12,7 @@ import CategoryContextProvider from './contexts/CategoryContext';
 import TypeContextProvider from './contexts/TypeContext';
 import NewsContextProvider from './contexts/NewsContext';
 import News from './views/users/News';
+import EditNews from "./components/admin/EditNews.js";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                   <Route path = "/admin" exact component = {Admin}/>
                   <Route path = "/admin/news" exact component = {NewsManagement}/>
                   <Route path = "/admin/news/create" exact component = {CreateNews}/>
+                  <Route path = "/admin/news/create/:id" exact component = {EditNews}/>
                   <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
                   {/* <Route exact path='/' component={Landing}/> */}
                   <Route exact path='/' component={Home}/>

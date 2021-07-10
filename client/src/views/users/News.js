@@ -32,7 +32,7 @@ const News = (props)=>{
                     {/* {data.background ? ReactHtmlParser(data.background) : ""} */}
                     {data.background ? 
                     <figure class = "image">
-                        <img src = {data.background}></img>
+                        <img src = {data.background.split("src=\"").pop().split("\"")[0]}></img>
                     </figure>: ""
                     }
             </div>

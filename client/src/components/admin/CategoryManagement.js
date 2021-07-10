@@ -5,6 +5,7 @@ import AddCategory from "./AddCategory";
 
 const NewsManagement = () => {
     const [isAdd, setIsAdd] = useState(false);
+    const [type, setType] = useState(1);
 
     const handleClick = () => {
         setIsAdd(!isAdd);
@@ -12,8 +13,10 @@ const NewsManagement = () => {
 
     return <div>
         <Header></Header>
-        {!isAdd && <ListCategory handleClick = {handleClick}></ListCategory>}
-        {isAdd && <AddCategory handleClick = {handleClick}></AddCategory>}
+        {!isAdd && <ListCategory setType = {setType} type = {type} handleClick = {handleClick}></ListCategory>}
+        {isAdd && <AddCategory handleClick = {handleClick} type = {type}></AddCategory>}
+
+
     </div>
 }
 
