@@ -75,7 +75,7 @@ const CreateNews = (props) => {
             bigCategory: bigCategory,
             category: category,
             type: type,
-            series: series,
+            series: series !== null ? series : {_id: "default"},
             title: title,
             background: background,
             content: content,
@@ -129,15 +129,15 @@ const CreateNews = (props) => {
             const id = props.match.params.id;
 
 
-            // console.log("check state final", state);
+            console.log("check state final", state);
 
             const today = new Date();
             
             const data = {
-                "bigCategory": bigCategory._id,
-                "category": category._id,
-                "type": type._id,
-                "series": series._id,
+                "bigCategory": bigCategory._id !== "default" ? bigCategory._id: null,
+                "category": category._id !== "default" ? category._id:null,
+                "type": type._id !== "default" ? type._id:null,
+                "series": series._id !== "default" ? series._id:null,
                 "title": title,
                 "background": background,
                 "content": content,
@@ -234,7 +234,7 @@ const CreateNews = (props) => {
                                 <option value="default">Choose category</option>
                                 {categoryList.map((cur_category)=>{
                                     // console.log("test cur cat", cur_category, category)
-                                    return cur_category.id === category? category._id:"" ? <option value={cur_category.id} selected>{cur_category.name}</option>
+                                    return cur_category.id === (category? category._id:"") ? <option value={cur_category.id} selected>{cur_category.name}</option>
                                                                         : <option value={cur_category.id}>{cur_category.name}</option>
                                 })}
                             </select>
@@ -245,7 +245,7 @@ const CreateNews = (props) => {
                                 <option value="default">Choose topic</option>
                                 {bigCategoryList.map((cur_bigCategory)=>{
                                     // console.log("test cur big cat", cur_bigCategory, bigCategory)
-                                    return cur_bigCategory.id === bigCategory? bigCategory._id:"" ? <option value={cur_bigCategory.id} selected>{cur_bigCategory.name}</option>
+                                    return cur_bigCategory.id === (bigCategory? bigCategory._id:"") ? <option value={cur_bigCategory.id} selected>{cur_bigCategory.name}</option>
                                                                         : <option value={cur_bigCategory.id}>{cur_bigCategory.name}</option>
                                 })}
                             </select>
@@ -255,7 +255,7 @@ const CreateNews = (props) => {
                             <select onChange={(event)=>handleChange(event, "type")}>
                                 <option value="default">Choose type</option>
                                 {typeList.map((cur_type)=>{
-                                    return cur_type.id === type?type._id:"" ? <option value={cur_type.id} selected>{cur_type.name}</option>
+                                    return cur_type.id === (type?type._id:"") ? <option value={cur_type.id} selected>{cur_type.name}</option>
                                                                     : <option value={cur_type.id}>{cur_type.name}</option>
                                 })}
                             </select>
@@ -266,7 +266,7 @@ const CreateNews = (props) => {
                                 <option value="default">Choose series</option>
                                 {seriesList.map((cur_series)=>{
                                     // console.log("test 2 thứ", cur_series, series)
-                                    return cur_series.id === series?series._id:"" ? <option value={cur_series.id} selected>{cur_series.name}</option>
+                                    return cur_series.id === (series?series._id:"") ? <option value={cur_series.id} selected>{cur_series.name}</option>
                                                                     : <option value={cur_series.id}>{cur_series.name}</option>
                                 })}
                             </select>

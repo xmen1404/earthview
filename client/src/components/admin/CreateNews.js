@@ -1,6 +1,4 @@
 import React , {useState, useEffect, useContext} from 'react';
-import {CategoryContext} from "../../contexts/CategoryContext";
-
 import Header from "./Header.js";
 import Button from "../button/Button.js";
 import "../../styles/admin/createnews.css";
@@ -8,9 +6,11 @@ import axios from 'axios';
 // import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
 import Ckeditor from '../ckeditor/Ckeditor';
 import News from '../layout/News';
+
 import {NewsContext} from "../../contexts/NewsContext";
 import {TypeContext} from "../../contexts/TypeContext";
 import {BigCategoryContext} from '../../contexts/BigCategoryContext';
+import {CategoryContext} from "../../contexts/CategoryContext";
 import {SeriesContext} from '../../contexts/SeriesContext';
 
 const CreateNews = () => {
@@ -80,10 +80,10 @@ const CreateNews = () => {
             // console.log("check data ở bên create news", data);
 
             const data = {
-                "bigCategory": bigCategory._id,
-                "category": category._id,
-                "type": type._id,
-                "series": series._id,
+                "bigCategory": bigCategory._id !== "default" ? bigCategory._id: null,
+                "category": category._id !== "default" ? category._id:null,
+                "type": type._id !== "default" ? type._id:null,
+                "series": series._id !== "default" ? series._id:null,
                 "title": title,
                 "background": background,
                 "content": content,

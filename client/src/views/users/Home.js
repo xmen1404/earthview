@@ -18,10 +18,10 @@ const Home = () => {
         const newsList = res.news;
         console.log(newsList);
 
-        const topNews = newsList.filter((news) => news.type ? news.type.name === "top" : false);
+        const topNews = newsList.filter((news) => news.type && news.category? news.type.name === "top" : false);
         console.log(topNews);
 
-        const highlightedNews = newsList.filter((news) => news.type ? news.type.name === "highlighted" : false);
+        const highlightedNews = newsList.filter((news) => news.type && news.category? news.type.name === "highlighted" : false);
         console.log(highlightedNews);
 
         setState({
@@ -41,7 +41,7 @@ const Home = () => {
         ></Banner>
         <TopNews topNews = {state.topNews}></TopNews>
         <Series></Series>
-        <RecentNews></RecentNews>
+        <RecentNews newsList = {state.newsList}></RecentNews>
     </div>
 }
 

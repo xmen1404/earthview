@@ -1,20 +1,34 @@
 .categoryItem{
     display: flex;
     flex-direction: row;
-    flex-basis: 25%;
-    margin-bottom: 1.5rem;
+    flex-basis: 23%;
+    /* margin-bottom: 0.1rem; */
+    margin-left: 2.3%;
+}
+
+.categoryItem:nth-child(4n+1){
+    margin-left: 0;
+}
+
+.categoryItem:hover{
+    cursor: pointer;
+    /* border: 1px solid #898989; */
+}
+
+.categoryItem:hover .icon{
+    border: 3px solid red;
 }
 
 
 .categoryItem .icon{
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 8px;
 }
 
 .categoryItem .information{
     height: 5rem;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     margin-left: 1rem;
 }
 

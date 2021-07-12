@@ -1,5 +1,7 @@
 .topnews{
-    margin: 10rem 6rem 0 6rem;
+    /* margin: 10rem 6rem 0 6rem; */
+    margin: 0 8rem;
+    margin-top: 6rem
 }
 
 .topnews .header{
@@ -9,7 +11,7 @@
 .topnews .news-item{
     margin: 0;
     max-width: 100vw;
-    height: 70vh;
+    height: 63vh;
     /* background-color: red; */
     display: flex;
     flex-direction: row;
@@ -17,7 +19,7 @@
 
 .topnews .news-item .left{
     /* background-color: green; */
-    width: 55%;
+    width: 50%;
     height: 100%;
     /* object-fit: cover; */
 }
@@ -61,7 +63,7 @@
     width: 10%;
     font-size: 1.5rem;
     padding-left: 1rem;
-    padding-top: 0.2rem;
+    padding-top: 0.3rem;
 }
 
 .topnews .news-item .right .item .information{

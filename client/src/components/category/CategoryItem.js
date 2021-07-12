@@ -1,21 +1,35 @@
 import "../../styles/category/categoryItem.css";
 
-const CategoryItem = () => {
-
-    const style = {
-        background: "url('https://a0.muscache.com/im/pictures/be4d3ba5-08d7-4afe-95a7-f2da6453886a.jpg?im_q=medq&im_w=240') no-repeat center center/cover"
+const CategoryItem = (props) => {
+    const {name, description, image} = props.data
+    // console.log("check tên data", name);
+    // const url = "http://localhost:5000/Icon_1.jpg";
+    let style = {
+        background: `url(${image}) no-repeat center center/cover`,
+        // background: `${props.background} no-repeat center center/cover`
+        // props.curCategory === name? 
     }
-    return <div className = "categoryItem">
+
+    if(props.curCategory === name){
+        style.border = "3px solid red";
+    }
+    
+    if(props.curCategory === "all" && name === "Tất cả"){
+        // console.log("đang ở đây");
+        style.border = "3px solid red";
+    }
+
+    return <div className = "categoryItem" onClick = {props.handleClick}>
         <div className = "icon" style = {style}>
 
         </div>
         <div className = "information">
             <div className = "name">
-                Earth Quake
+                {name}
             </div>
-            <div className = "number">
+            {/* <div className = "number">
                 3 bài viết mới
-            </div>
+            </div> */}
         </div>
     </div>
 } 

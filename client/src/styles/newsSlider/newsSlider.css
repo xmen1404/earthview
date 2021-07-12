@@ -3,6 +3,7 @@
 
 .newsSlider{
     /* margin: 0 6rem 0 6rem; */
+    /* width: 100%; */
 }
 
 .newsSlider-slideshow {
@@ -18,14 +19,18 @@
     white-space: nowrap;
     transition: ease 1000ms;
     /* position: relative; */
+    /* display: flex; */
+    
 }
 
 .newsSlider-slide {
     display: inline-block;
 
     height: 30rem;
-    width: 19rem;
-    margin: 0 1rem;
+    /* width: 19rem; */
+    width: 24%;
+    /* flex-basis: 25%; */
+    margin: 0 0.5rem;
 }
 
 .newsSlider-slide:first-child{
@@ -47,7 +52,7 @@
     top: 0;
     /* bottom: 0; */
     /* margin: auto 0; */
-    right: 1rem;
+    right: 0.2rem;
     width: 5rem;
     height: 19rem;
     /* height: 5rem; */

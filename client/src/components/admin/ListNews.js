@@ -106,8 +106,15 @@ const ListNews = () => {
                         <tr>
                             <td>{idx+1}</td>
                             <td>{news.title && news.title.includes("h1")? news.title.split(">")[1].split("<")[0] : "no title"}</td>
-                            <td>{news.content ? news.content.split("</span>")[0].split(">").pop() : "no description"}</td>
-                            <td>{news.category && news.bigCategory ? news.category.name + " " +news.bigCategory.name.toLowerCase() : "Không có chuyên mục"}</td>
+                            {news.content && 
+                                <td>{news.content.split("</span>")[0].split(">").pop() ? news.content.split("</span>")[0].split(">").pop() : "no description"}</td>
+                            }   
+                            {/* <td>{news.content ? news.content.split("</span>")[0].split(">").pop() : "no description"}</td> */}
+                            {news.category && news.bigCategory ?
+                                <td>{news.category.name + " " +news.bigCategory.name.toLowerCase()}</td>:
+                                <td style = {{color: "red"}}>Không có chuyên mục</td>
+                            }
+                            {/* <td>{news.category && news.bigCategory ? news.category.name + " " +news.bigCategory.name.toLowerCase() : "Không có chuyên mục"}</td> */}
                             <td>{news.type ? news.type.name : "no type"}</td>
                             <td>{news.series ? news.series.name : "Không thuộc series nào"}</td>
                             <td>{news.user ? news.user.username : "no user"}</td>

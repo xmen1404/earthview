@@ -36,7 +36,8 @@ const CategoryContextProvider = ({children}) => {
                 // console.log("debug in for", category);
                 list.push({
                     name: category.name,
-                    id: category._id
+                    id: category._id,
+                    image: category.image
                 })
             }
 

@@ -1,7 +1,7 @@
 const CategoryModel = require('../models/category.model');
 
 module.exports.createCategory = async (req, res) => {
-    const {name, description} = req.body;
+    const {name, description, image} = req.body;
 
     // simple validation
     if(!name){
@@ -18,7 +18,8 @@ module.exports.createCategory = async (req, res) => {
 
         const newCategory = new CategoryModel({
             name: name,
-            description: description || ""
+            description: description || "",
+            image: image
         })
 
         await newCategory.save();
@@ -35,7 +36,7 @@ module.exports.createCategory = async (req, res) => {
 
 module.exports.getCategory = async (req, res) => {
     try{
-        const categories = await CategoryModel.find();
+        const categories = await CategoryModel.find().sort({ _id: -1 });
         return res.json({success: true, categories: categories});
 
     }catch(err){
