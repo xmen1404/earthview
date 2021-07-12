@@ -97,6 +97,10 @@ const RecentNews = (props) => {
         setCurCategory(categoryName);
     }
 
+    const moveToNews = (id) => {
+        window.location.href = "/news/"+id;
+    }
+
     const seeMore = () => {
         // console.log("seeing more");
 
@@ -166,6 +170,7 @@ const RecentNews = (props) => {
                         <div
                             className = "item"
                             style = {{background: `url(${news.background.split("src=\"").pop().split("\"")[0]}) no-repeat center center/cover`}}
+                            onClick = {()=>moveToNews(news._id)}
                         >
                             <div className = "information">
                                 <div className = "title">

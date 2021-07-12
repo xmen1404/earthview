@@ -55,7 +55,7 @@
     /* text-align: center; */
 }
 
-.listcategory .wrapper .footer{
+.listcategory .wrapper .lc-footer{
     display: flex;
     flex-direction: row;
     justify-content: center

@@ -12,7 +12,8 @@ const TopNews = (props) => {
         isLoading: true,
         index: 0,
         topNews: [],
-        topNewsBg: ""
+        topNewsBg: "",
+        curNews: ""
     });
 
     // const handleMouse = (event) => {
@@ -20,7 +21,9 @@ const TopNews = (props) => {
     //     console.log(event.target)
     // }
 
-
+    const moveToNews = () => {
+        window.location.href = "/news/"+state.curNews;
+    }
 
     useEffect(()=>{
         // const data = await props.highlightedNews;
@@ -33,7 +36,8 @@ const TopNews = (props) => {
                 // newsList: props.newsList,
                 topNews: props.topNews.slice(0,4),
                 isLoading: false,
-                topNewsBg: props.topNews[0].background.split("src=\"").pop().split("\"")[0]
+                topNewsBg: props.topNews[0].background.split("src=\"").pop().split("\"")[0],
+                curNews: props.topNews[0]._id
             })
         }
     }, [props]);
@@ -48,15 +52,20 @@ const TopNews = (props) => {
         {!state.isLoading &&
             <div className = "news-item">
                 <div className = "left">
-                    <img src = {state.topNewsBg}></img>
+                    <img src = {state.topNewsBg} onClick = {()=>moveToNews()}></img>
                 </div>
                 <div className = "right">
                     {state.topNews.map((news, idx) => (
-                        <div className = {`item${state.index === idx ? " onHover" : ""}`} onMouseEnter = {()=>{setState({
-                            ...state,
-                            index: idx,
-                            topNewsBg: news.background.split("src=\"").pop().split("\"")[0]
-                        })}}>
+                        <div 
+                            className = {`item${state.index === idx ? " onHover" : ""}`} 
+                            onMouseEnter = {()=>{setState({
+                                ...state,
+                                index: idx,
+                                topNewsBg: news.background.split("src=\"").pop().split("\"")[0],
+                                curNews: news._id
+                            })}}
+                            onClick = {()=>moveToNews()}
+                        >
                             <div className = "index">
                                 {idx < 9 ? "0"+(idx+1) : (idx+1)}
                             </div>

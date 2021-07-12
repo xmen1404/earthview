@@ -6,6 +6,8 @@ import {NewsContext} from "../../contexts/NewsContext";
 import TopNews from "../../components/topNews/TopNews";
 import Series from '../../components/series/Series';
 import RecentNews from '../../components/recentNews/RecentNews';
+import Card from "../../components/card/Card";
+import Footer from "../../components/footer/Footer";
 import "../../styles/views/users/home.css";
 
 
@@ -16,13 +18,13 @@ const Home = () => {
     useEffect(async ()=>{
         const res = await getNews();
         const newsList = res.news;
-        console.log(newsList);
+        // console.log(newsList);
 
         const topNews = newsList.filter((news) => news.type && news.category? news.type.name === "top" : false);
-        console.log(topNews);
+        // console.log(topNews);
 
         const highlightedNews = newsList.filter((news) => news.type && news.category? news.type.name === "highlighted" : false);
-        console.log(highlightedNews);
+        // console.log(highlightedNews);
 
         setState({
             ...state,
@@ -42,6 +44,8 @@ const Home = () => {
         <TopNews topNews = {state.topNews}></TopNews>
         <Series></Series>
         <RecentNews newsList = {state.newsList}></RecentNews>
+        <Card></Card>
+        <Footer></Footer>
     </div>
 }
 

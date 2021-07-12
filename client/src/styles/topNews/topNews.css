@@ -11,7 +11,7 @@
 .topnews .news-item{
     margin: 0;
     max-width: 100vw;
-    height: 63vh;
+    height: 61vh;
     /* background-color: red; */
     display: flex;
     flex-direction: row;
@@ -49,14 +49,18 @@
     object-fit: cover;
 }
 
+.topnews .news-item .left img:hover{
+    cursor: pointer;
+}
+
 .topnews .news-item .right .item{
-    margin-top: 2rem;
+    margin-top: 1.9rem;
     /* border-top: 3px solid #000000; */
     /* overflow-y: scroll; */
 }
 
 .topnews .news-item .right .item:first-child{
-    margin-top: 0.5rem;
+    margin-top: 0rem;
 }
 
 .topnews .news-item .right .item .index{

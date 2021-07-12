@@ -80,13 +80,19 @@ const Banner = (props) => {
             // document.getElementsByClassName("navbar");
             document.getElementsByClassName("navbar")[0].style.height =  "4.3rem";
             document.getElementsByClassName("navbar")[0].style.boxShadow = "0px 0.2rem 0.5rem #ababab";
+            // document.getElementsByClassName("left")[0].style.marginTop = "0";
             // console.log(document.getElementsByClassName("navbar")[0].style);
         } else {
             // document.getElementsByClassName("navbar").style.fontSize = "90px";
             // console.log(document.getElementsByClassName("navbar").style);
             document.getElementsByClassName("navbar")[0].style.height =  "6.3rem";
             document.getElementsByClassName("navbar")[0].style.boxShadow = "none";
+            // document.getElementsByClassName("left")[0].style.marginTop = "2rem";
         }
+    }
+
+    const moveToNews = (id) => {
+        window.location.href = "/news/"+id;
     }
 
 
@@ -209,6 +215,7 @@ const Banner = (props) => {
                             className="slide"
                             key={index}
                             style={{ background: `url(${news.background.split("src=\"").pop().split("\"")[0]}) no-repeat center center/cover` }}
+                            onClick = {()=>moveToNews(news._id)}
                         >
                         </div>
                     ))}

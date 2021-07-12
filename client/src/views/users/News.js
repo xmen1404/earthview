@@ -39,13 +39,13 @@ const News = (props)=>{
 
             <div className = 'header'>
                 <div className ="information">
-                    <div className = 'category'>{data.category.name}</div>
+                    <div className = 'category'>{data.category? data.category.name: ""} {data.bigCategory? data.bigCategory.name? data.bigCategory.name.toLowerCase():"":""}</div>
                     
                     <div className = 'title'>
                         {data.title ? ReactHtmlParser(data.title) : ""}
                     </div>
                     
-                    <div className = 'time'>Published on {data.date}</div>
+                    <div className = 'time'>Last updated on {data.date}</div>
                 </div>
 
                 {/* <div className = 'author'>

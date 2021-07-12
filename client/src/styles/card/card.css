@@ -1,0 +1,17 @@
+.card-ourStory{
+    margin: 5rem 8rem; 
+    max-width: 100%;
+    /* background-color: red; */
+    height: 71vh;
+    border-radius: 1rem;
+    position: relative;
+    background: url("../../assets/EarthView's Story Background (Unsplash).jpg") no-repeat center center/cover;
+}
+
+.card-ourStory .title{
+    position: absolute;
+    top: 2.5rem;
+    left: 7rem;
+    color: #ffffff;
+}
+

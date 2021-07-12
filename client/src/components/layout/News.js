@@ -30,7 +30,7 @@ const News = (props)=>{
                         {data.title ? ReactHtmlParser(data.title) : ""}
                     </div>
                     
-                    <div className = 'time'>Published on {data.date.day+'-'+data.date.month+'-'+data.date.year}</div>
+                    <div className = 'time'>Last updated on {data.date.day+'-'+data.date.month+'-'+data.date.year}</div>
                 </div>
 
                 {/* <div className = 'author'>

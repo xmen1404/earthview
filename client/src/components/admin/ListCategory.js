@@ -73,7 +73,7 @@ const ListCategory = (props) => {
                 </select>
             </div>
 
-            <div className = "footer">
+            <div className = "lc-footer">
                 <Button
                             handleClick = {handleClick}
                             margin =  "1.5rem 1rem 2rem 0"
