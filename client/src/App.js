@@ -6,6 +6,7 @@ import CreateNews from "./components/admin/CreateNews.js";
 import CategoryManagement from "./components/admin/CategoryManagement.js";
 import Landing from './components/layout/Landing';
 import Home from "./pages/users/Home";
+import Community from "./pages/users/Community";
 import Auth from "./pages/users/Auth";
 import AuthContextProvider from './contexts/AuthContext';
 import CategoryContextProvider from './contexts/CategoryContext';
@@ -49,7 +50,7 @@ function App() {
                       <Route path = "/admin/news/create/:id" exact component = {EditNews}/>
                       <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
                       {/* <Route exact path='/' component={Landing}/> */}
-                      <Route exact path='/' component={Home}/>
+                      <Route exact path='/' component={Community}/>
                       <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
                       <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} />
                       <Route path = "/news/:id" exact component = {News}/>
