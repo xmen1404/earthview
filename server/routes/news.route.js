@@ -16,12 +16,14 @@ router.post('/', verifyToken, controller.createNews);
 // @route GET api/news
 // @desc get news list
 // @access private - admin
-router.get('/', verifyToken, controller.getNews);
+// router.get('/', verifyToken, controller.getNews);
+router.get('/', controller.getNews);
 
 // @route GET api/news/id
 // #desc get news by id
 // @access private - login xong mới thấy
-router.get('/:id', verifyToken, controller.getNewsById);
+// router.get('/:id', verifyToken, controller.getNewsById);
+router.get('/:id', controller.getNewsById);
 
 // @route PUT api/news
 // #desc update news

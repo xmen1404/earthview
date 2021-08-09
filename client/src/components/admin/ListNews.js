@@ -66,7 +66,7 @@ const ListNews = () => {
         <table>
             <tr>
                 <td colSpan="6" style={{color: "#C36"}}>Tổng số bài viết: {state.newsList ? state.newsList.length : "0"}</td>
-                <td colSpan="3"><a href="/admin/news/create" style = {{color: "#C36"}}>Thêm bài viết</a></td>
+                <td colSpan="4"><a href="/admin/news/create" style = {{color: "#C36"}}>Thêm bài viết</a></td>
                 {/* <td colspan="1"></td> */}
             </tr>
             {/* <tr style={{background: "#0F6", color: "#fff"}}> */}
@@ -107,7 +107,7 @@ const ListNews = () => {
                             <td>{idx+1}</td>
                             <td>{news.title && news.title.includes("h1")? news.title.split(">")[1].split("<")[0] : "no title"}</td>
                             {news.content && 
-                                <td>{news.content.split("</span>")[0].split(">").pop() ? news.content.split("</span>")[0].split(">").pop() : "no description"}</td>
+                                <td>{news.description? news.description : "no description"}</td>
                             }   
                             {/* <td>{news.content ? news.content.split("</span>")[0].split(">").pop() : "no description"}</td> */}
                             {news.category && news.bigCategory ?

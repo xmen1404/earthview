@@ -84,6 +84,15 @@ const ListCategory = (props) => {
                             color = "#ffffff"></Button>
 
                 <Button
+                            // handleClick = {handleClick}
+                            margin =  "1.5rem 1rem 2rem 0"
+                            bgcolor = "#3B5998" 
+                            height = "2.3rem" 
+                            width = "6rem" 
+                            content = "Edit" 
+                            color = "#ffffff"></Button>
+
+                <Button
                             handleClick = {props.handleClick}
                             margin =  "1.5rem 1rem 2rem 0"
                             bgcolor = "#3B5998" 

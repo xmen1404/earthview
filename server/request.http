@@ -128,3 +128,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhM
 ###
 GET http://localhost:5000/api/types
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+###
+GET http://localhost:5000/api/series
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA

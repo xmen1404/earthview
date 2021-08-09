@@ -17,7 +17,7 @@
 .view-news .wrapper .header{
     position: relative;
     /* z-index: 1; */
-    height:45vh;
+    height:50vh;
     color: #f1f1f1 !important;
 }
 
@@ -99,16 +99,21 @@
     height: 100%; */
 }
 
-
-.view-news .wrapper .body{
+.view-news .wrapper .description{
     position: relative;
-    /* z-index: 1; */
-    /* margin-top: -5rem; */
-    /* width: 60%; */
     text-align: left;
     line-height: 2rem;
     padding-bottom: 1rem;
     font-size: 22px;
+}
+
+
+.view-news .wrapper .body{
+    position: relative;
+    text-align: left;
+    line-height: 2rem;
+    padding-bottom: 1rem;
+    font-size: 18px;
 }
 
 

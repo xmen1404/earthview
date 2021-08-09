@@ -32,11 +32,17 @@ const SeriesContextProvider = ({children}) => {
 
             let list = []
 
-            for(let category of res.data.categories){
+            const categories = res.data.categories;
+            const count = res.data.count;
+
+            for(let i = 0; i < categories.length; i++){
                 // console.log("debug in for", category);
+                const category = categories[i];
                 list.push({
                     name: category.name,
-                    id: category._id
+                    id: category._id,
+                    image: category.image,
+                    count: count[i]
                 })
             }
 

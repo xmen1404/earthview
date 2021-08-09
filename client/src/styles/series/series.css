@@ -1,10 +1,11 @@
 .series{
     /* margin-top: 7rem; */
     /* margin: 7rem 6rem 0 6rem; */
-    margin: 0 8rem;
+    /* margin: 0 8rem; */
     margin-top: 7rem;
 }
 
 .series .header{
     /* margin: 1rem 0; */
+    margin: 0 8rem;
 }

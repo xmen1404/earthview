@@ -43,6 +43,10 @@ const News = (props)=>{
 
             </div>
 
+            <div className = 'description'>
+                {data.description ? ReactHtmlParser(data.description) : ""}
+            </div>
+
             <div className = 'body'>
                 {data.content ? ReactHtmlParser(data.content) : ""}
             </div>    

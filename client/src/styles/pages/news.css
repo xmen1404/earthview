@@ -1,0 +1,233 @@
+/* .news h1{
+    font-size: 2.5rem;
+}
+
+.news h2{
+    font-size: 2rem;
+} */
+
+.news{
+    /* background: #140d14; */
+    /* color: #f1f1f1 !important; */
+    position: relative;
+    /* background: #F9F5E9; */
+    background: #F9F5E9;
+}
+
+.news .header{
+    position: relative;
+    /* z-index: 1; */
+    /* height:75vh; */
+    height: 100vh;
+    color: #f1f1f1 !important;
+}
+
+.news .header .information{
+    position: absolute;
+    left: 25vw;
+    top: 45vh;
+}
+
+.news .header .information::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -2.5rem;
+    height: 1rem;
+    width: 25%;
+    /* opacity: 60%; */
+    border-bottom: 2px solid darkorange;
+}
+
+
+.news .title{
+    /* position: absolute;
+    top: 38vh;
+    left: 25vw; */
+    /* color: #ffffff */
+    /* bottom: 0;
+    margin: auto 0; */
+}
+
+.news .header .information .category{
+    /* position: absolute;
+    top: 38vh;
+    left: 25vw; */
+    /* color: yellow; */
+    color: darkorange;
+    font-size:1.4rem;
+}
+
+
+.news .time{
+    /* position: absolute;
+    top: 56vh;
+    left: 25vw; */
+    font-size:1.4rem;
+}
+
+.news .background{
+    position: absolute;
+    margin-top: 0;
+    height: 100vh;
+    width: 100vw;
+    /* z-index: 0; */
+    /* transform: scale(1.15); */
+    /* top: 0; */
+}
+
+
+.news .background::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50vh;
+    width: 100%;
+    background: linear-gradient(180deg, #ffffff, #000000);
+    opacity: 60%;
+    border: none;
+}
+
+.news .background::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50vh;
+    width: 100%;
+    /* background: linear-gradient(180deg,transparent,#140d14); */
+    background: #000000;
+    opacity: 60%;
+    border: none;
+}
+
+.news figure{
+    width: 100%;
+    height: 100%;
+    /* margin-top: 3rem; */
+    /* margin-left: 0; */
+    margin: 4rem auto;
+}
+
+.news figure:first-child{
+    margin-top:0;
+}
+
+.news figure img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.news figure:first-child img{
+    /* opacity: 0.35; */
+    border-radius: 0;
+}
+
+
+/* .news .description blockquote{
+    padding-left: 25vw;
+    width: 50%;
+} */
+
+.news .description{
+    border-bottom: 1px solid #000000;
+    width: 49.7%;
+    margin: 3rem auto;
+    padding-bottom: 2rem;
+}
+
+
+.news .description blockquote {
+    /* padding-left: 30vw;
+    width: 44%; */
+    /* font-family: Georgia, serif; */
+    font-size: 18px;
+    /* font-style: italic; */
+    /* width: 500px; */
+    margin: 0;
+    /* margin-left: 1rem; */
+    padding-left: 3rem;
+    /* padding: - 40px; */
+    /* line-height: 1.45; */
+    position: relative;
+    text-align: right;
+    /* color: #383838; */
+}
+
+.news .description blockquote:before {
+    display: block;
+    /* padding-left: 10px; */
+    font-family: Georgia, serif;
+    font-style: italic;
+    content: "\201C";
+    font-size: 4rem;
+    position: absolute;
+    left: 3rem;
+    top: -1.4rem;
+    color: #7a7a7a;
+}
+
+.news .description blockquote p:nth-child(2) {
+    color: #575757;
+    font-size: 16px;
+    display: block;
+    /* margin-top: 5px; */
+}
+
+.news .description blockquote cite:before {
+    content: "\2014 \2009";
+}
+
+.news .body{
+    position: relative;
+    /* z-index: 1; */
+    /* margin-top: -5rem; */
+    /* width: 60%; */
+    text-align: left;
+    padding-bottom: 1rem;
+    /* background: #F9F5E9; */
+    font-size: 18px;
+    text-align: justify;
+}
+
+
+
+
+.news .body p{
+    line-height: 2rem;
+}
+
+
+.news .body p, .news .body h2, .news .body h3{
+    padding-left: 25vw;
+    width: 50%;
+}
+
+.news .body span{
+    color: #f1f1f1 !important;
+}
+
+.news figcaption{
+    text-align: center;
+    font-size: 0.8rem;
+    /* margin-left: 25vw; */
+    padding: 1rem 0;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    width: 50vw;
+    /* border-bottom: 1px solid #343434; */
+}
+
+
+
+.news .recommend{
+    /* margin: 0 8rem; */
+    margin-top: 7rem;
+    position: relative;
+}

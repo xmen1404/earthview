@@ -1,0 +1,7 @@
+.reading-progress-bar {
+    position: fixed;
+    height: 0.38rem;
+    top: 4.3rem;
+    background-color:green;
+    z-index: 2;
+  }

@@ -4,22 +4,20 @@
 .newsSlider{
     /* margin: 0 6rem 0 6rem; */
     /* width: 100%; */
+    display: flex;
+    flex-direction: row;
 }
 
 .newsSlider-slideshow {
     margin: 0 auto;
     overflow: hidden;
     max-width: 100vw;
-    /* margin-left: 5rem; */
-    /* margin-bottom: 5rem; */
     position: relative;
 }
 
 .newsSlider-slideshowSlider {
     white-space: nowrap;
     transition: ease 1000ms;
-    /* position: relative; */
-    /* display: flex; */
     
 }
 
@@ -33,11 +31,15 @@
     margin: 0 0.5rem;
 }
 
+.newsSlider-slide:hover{
+    cursor: pointer;
+}
+
 .newsSlider-slide:first-child{
     margin-left: 0;
 }
 
-.newsSlider-slide .background{
+.newsSlider-slide .newsSlider-background{
     height: 19rem;
     margin: 0;
     margin-bottom: 2rem;
@@ -45,31 +47,27 @@
     border-radius: 1rem;
 }
 
+
+/* next item v1 */
+
+/* 
 .newsSlider-slideshow .next-item{
     display: flex;
     flex-direction: row;
     position: absolute;
     top: 0;
-    /* bottom: 0; */
-    /* margin: auto 0; */
     right: 0.2rem;
     width: 5rem;
     height: 19rem;
-    /* height: 5rem; */
 }
 
 .newsSlider-slideshow .next-item .clear{
     opacity: 1 !important; 
-    /* background-color: #ffffff; */
 }
 
 .newsSlider-slideshow .next-item .right{
-    /* height: 30rem; */
     height: 100%;
     width: 50%;
-    /* position: absolute;
-    right: 0;
-    top: 0; */
     opacity: 0.5;
     background-color: #000000;
     transition-property: opacity;
@@ -79,36 +77,19 @@
 }
 
 .newsSlider-slideshow .next-item .left{
-    /* height: 30rem; */
     height: 100%;
     width: 50%;
-    /* position: absolute; */
-    /* right: 5%;
-    top: 0; */
     opacity: 0.5;
     background-color: #000000;
     border-right: 1px solid #aaaaaa;
     transition-property: opacity;
     transition-duration: 300ms;
     transition-timing-function: linear;
-    /* border-radius: 0 1rem 1rem 0; */
 }
 
 
 .newsSlider-slideshow .arrow-right{
-    /* position: absolute;
-    right: 1.6%;
-    top: 0;
-    bottom: 0;
-    height: 10rem;
-    margin: auto; */
-
-    /* width: 0.5rem;
-    height: 0.5rem; */
-
     height: 100%;
-    /* margin: auto; */
-    /* margin: 0 auto; */
     text-align: center;
     position: relative;
 }
@@ -126,41 +107,14 @@
 }
 
 .newsSlider-slideshow .arrow-left{
-    /* position: absolute;
-    right: 5%;
-    top: 0;
-    bottom: 0; */
-    /* height: 10rem; */
-    /* height: 19rem;
-    line-height: 19rem; */
     height: 100%;
-    /* margin: auto; */
-    /* margin: 0 auto; */
     text-align: center;
     position: relative;
-
-    /* width: 0.5rem;
-    height: 0.5rem; */
 }
 
 .newsSlider-slideshow .arrow-left img{
     width: 1.5rem;
     height: 3rem;
-    /* position: absolute; */
-    /* top: 0;
-    bottom: 0; */
-    /* margin: auto; */
-    /* left: 0;
-    right: 0;
-    margin: auto; */
-    /* margin-top: auto;
-    margin-bottom: auto; */
-
-    /* vertical-align: center;
-    display: inline; */
-
-    /* width: auto;
-    height: auto; */
     position: absolute;
     top: 0;
     bottom: 0;
@@ -168,24 +122,88 @@
     right: 0;
     margin: auto;
 
-    /* margin: auto 0; */
-    /* align-content: center; */
     transform: scaleX(-1);
 }
 
 .newsSlider-slideshow .arrow-left,.newsSlider-slideshow .arrow-right img:hover{
     cursor: pointer;
+} */
+
+
+/* next item v2 */
+.newsSlider .left{
+    /* position: absolute;
+    top: 0;
+    right: -5rem; */
+    /* width: 5rem; */
+    /* margin: 0 2rem 0 4rem; */
+    height: 19rem;
+}
+
+.newsSlider .arrow-left{
+    height: 100%;
+    text-align: center;
+    position: relative;
+    width: 3rem;
+    margin: 0 2rem 0 3rem;
+}
+
+.newsSlider .arrow-left img{
+    width: 2.5rem;
+    height: 2.5rem;
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 
 
-.newsSlider-slide .information .category{
-    /* width: 20%; */
+
+.newsSlider .right{
+    /* position: absolute;
+    top: 0;
+    right: -5rem; */
+    /* width: 5rem;
+    margin: 0 4rem 0 2rem; */
+    height: 19rem;
+}
+
+.newsSlider .arrow-right{
+    height: 100%;
+    text-align: center;
+    position: relative;
+    width: 3rem;
+    margin: 0 3rem 0 2rem;
+}
+
+.newsSlider .arrow-right img{
+    width: 2.5rem;
+    height: 2.5rem;
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+.newsSlider .arrow-left,.newsSlider .arrow-right img:hover{
+    cursor: pointer;
+} 
+
+
+.newsSlider-slide .newsSlider-information .title{
     color: #000000;
     margin-top: 0.3rem;
 }
 
-.newsSlider-slide .information .title{
+.newsSlider-slide .newsSlider-information .keyword{
     white-space: pre-wrap;
 }
 

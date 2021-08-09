@@ -26,11 +26,19 @@ const newsSchema = new Schema({
         ref: "series",
         default: null
     },
+    keyword:{
+        type:String,
+        required: false
+    },
     title:{
         type: String,
         required: true
     },
     background:{
+        type: String,
+        required: true
+    },
+    description:{
         type: String,
         required: true
     },

@@ -96,9 +96,8 @@
 
 
 .footer .bottom{
-    /* width: 100%; */
     height: 12%;
-    /* background: blue; */
+    background: #ffffff;
 }
 
 .footer .bottom .wrapper{

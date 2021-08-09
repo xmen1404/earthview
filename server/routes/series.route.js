@@ -12,7 +12,8 @@ router.post('/', verifyToken, controller.createSeries);
 // @route GET api/categories
 // @desc get all categories
 // @access pravate - admin
-router.get('/', verifyToken, controller.getSeries);
+// router.get('/', verifyToken, controller.getSeries);
+router.get('/', controller.getSeries);
 
 // @route DELETE api/categories
 // #desc delete category

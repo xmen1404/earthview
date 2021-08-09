@@ -1,23 +1,61 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {useEffect, useParams, useContext, useState} from 'react';
+import {useEffect, createRef, useContext, useState} from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import '../../styles/views/news.css';
+import '../../styles/pages/news.css';
 import {NewsContext} from "../../contexts/NewsContext";
+import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
+import ReadingProgress from '../../components/readingProgress/ReadingProgress';
+import NewsSlider from '../../components/newsSlider/NewsSlider';
 
 const News = (props)=>{
-    const {getNewsById} = useContext(NewsContext);
+    const {getNews, getNewsById} = useContext(NewsContext);
+    // const {getNews} = useContext(NewsContext);
+
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [list, setList] = useState([]);
     // const {id} = useParams();
+    const target = createRef();
+    const [type, setType] = useState();
+
+    // type = 0: hiển thị bài viết cùng thể loại
+    // type = 1: hiển thị bài viết cùng tác giả
+    // type = 2: hiển thị bài viết cùng series
 
     useEffect(async () => {
         const id = props.match.params.id;
         console.log(id);
+
+
+        let res;
+
+        res = await getNews();
+        const newsList = res.news;
         
-        const res = await getNewsById(id);
+        res = await getNewsById(id);
         const data = res.news;
 
-        // console.log(data);
+        console.log(data);
+
+        if(data.series){
+            console.log("có series");
+            const sameSeries = newsList.filter((news) => news.series && (news.series? (news.series.name === data.series) : false) && news._id !== data._id);
+            setList(sameSeries);
+            setType(2);
+        }
+        else{
+            const sameAuthor = newsList.filter((news) => news.user && (news.user? (news.user._id === data.user._id) : false) && news._id !== data._id);
+            if(sameAuthor.length < 4){
+                const sameCat = newsList.filter((news) => news.category && (news.category? (news.category._id === data.category._id) : false) && news._id !== data._id);
+                setList(sameCat);
+                setType(0)
+            }
+            else{
+                setList(sameAuthor);
+                setType(1);
+            }
+        }
 
         await setData(data);
         setLoading(false);
@@ -27,7 +65,9 @@ const News = (props)=>{
     console.log(data);
 
     return <div className = 'news'>
-        {!loading && <div>
+        <Navbar></Navbar>
+        <ReadingProgress target={target} />
+        {!loading && <div ref={target}>
             <div className = 'background'>
                     {/* {data.background ? ReactHtmlParser(data.background) : ""} */}
                     {data.background ? 
@@ -45,7 +85,7 @@ const News = (props)=>{
                         {data.title ? ReactHtmlParser(data.title) : ""}
                     </div>
                     
-                    <div className = 'time'>Last updated on {data.date}</div>
+                    <div className = 'time'>{data.user.username} | {data.date} | 4 phút đọc</div>
                 </div>
 
                 {/* <div className = 'author'>
@@ -58,6 +98,10 @@ const News = (props)=>{
 
             </div>
 
+            <div className = 'description'>
+                {data.description ? ReactHtmlParser(data.description) : ""}
+            </div>
+
             <div className = 'body'>
                 {data.content ? ReactHtmlParser(data.content) : ""}
             </div>    
@@ -65,6 +109,11 @@ const News = (props)=>{
 
             {/* <div><p>Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello  Hello Hello Hello Hello Hello Hello Hello Hello </p></div> */}
         </div>}
+
+        <div className = "recommend">
+            <NewsSlider type = {type} list = {list}></NewsSlider>
+        </div>
+        <Footer></Footer>
     </div>
 }
 

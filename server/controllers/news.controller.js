@@ -1,7 +1,7 @@
 const NewsModel = require("../models/news.model");
 
 module.exports.createNews = async (req, res) => {
-    const {bigCategory, category, type, series, title, background, content, date} = req.body;
+    const {bigCategory, category, type, series, title, background, description, content, date} = req.body;
 
     // simple validation
     let errors = []
@@ -19,6 +19,9 @@ module.exports.createNews = async (req, res) => {
     }
     if(!background){
         errors.push("background is required");
+    }
+    if(!description){
+        errors.push("description is required");
     }
     if(!content){
         errors.push("content is required");
@@ -41,6 +44,7 @@ module.exports.createNews = async (req, res) => {
             series: series,
             title: title,
             background: background,
+            description: description,
             content: content,
             date: date
         });
@@ -74,7 +78,7 @@ module.exports.getNews = async (req,res) => {
 
 module.exports.getNewsById = async (req, res) => {
     try{
-        const condition = {_id: req.params.id, user: req.userId};
+        const condition = {_id: req.params.id};
         const news = await NewsModel.findOne(condition)
                                     .populate("user", ["username"])
                                     .populate("bigCategory", ["name"])
@@ -97,7 +101,7 @@ module.exports.getNewsById = async (req, res) => {
 
 
 module.exports.updateNews = async (req, res)=>{
-    const {bigCategory, category, type, series, title, background, content, date} = req.body;
+    const {bigCategory, category, type, series, keyword, title, background, description, content, date} = req.body;
 
     // simple validation
     let errors = []
@@ -117,6 +121,9 @@ module.exports.updateNews = async (req, res)=>{
     if(!background){
         errors.push("background is required");
     }
+    if(!description){
+        errors.push("description is required");
+    }
     if(!content){
         errors.push("content is required");
     }
@@ -133,8 +140,10 @@ module.exports.updateNews = async (req, res)=>{
             category: category,
             type: type,
             series: series,
+            keyword: keyword,
             title: title,
             background: background,
+            description: description,
             content: content,
             date: date
         };

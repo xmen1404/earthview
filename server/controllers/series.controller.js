@@ -1,7 +1,8 @@
 const SeriesModel = require('../models/series.model');
+const NewsModel = require("../models/news.model");
 
 module.exports.createSeries = async (req, res) => {
-    const {name, description} = req.body;
+    const {name, description, image} = req.body;
 
     // simple validation
     if(!name){
@@ -18,7 +19,8 @@ module.exports.createSeries = async (req, res) => {
 
         const newSeries = new SeriesModel({
             name: name,
-            description: description || ""
+            description: description || "",
+            image: image
         })
 
         await newSeries.save();
@@ -35,8 +37,25 @@ module.exports.createSeries = async (req, res) => {
 
 module.exports.getSeries = async (req, res) => {
     try{
-        const categories = await SeriesModel.find();
-        return res.json({success: true, categories: categories});
+        let categories = await SeriesModel.find().sort({ _id: -1 });
+        let count = []
+
+        for(let i = 0; i< categories.length; i++){
+            // console.log("check category", categories[i]._id);
+            const newsCount = await NewsModel.countDocuments({series:categories[i]._id}).sort({ _id: -1 });
+            // console.log("debug, get series", news);
+            // console.log("before", categories[i])
+            // categories[i]["count"] = news;
+            // console.log("after", categories[i])
+            count.push(newsCount)
+        } 
+
+        // categories = categories.map((cat,idx) => ({...cat, count: count[idx]}))
+
+        // console.log("check category", categories);
+        console.log("check count", count);
+
+        return res.json({success: true, categories: categories, count: count});
 
     }catch(err){
         console.log(err);
@@ -50,7 +69,7 @@ module.exports.deleteSeries = async (req, res) => {
         const deleteCondition = {_id: req.params.id};
         // console.log(deletePostCondition)
 
-        const deletedPost = await SeriesModel.findOneAndDelete(deletePostCondition);
+        const deletedSeries = await SeriesModel.findOneAndDelete(deleteCondition);
 
         if(!deletedSeries){
             return res.status(401).json({"success": false, "message": "Series not found"})

@@ -1,4 +1,5 @@
 import React , {useState, useEffect, useRef, useContext} from 'react';
+import Navbar from "../../components/navbar/Navbar-v2";
 import Banner from "../../components/banner/Banner";
 // import CategoryList from "../../components/category/CategoryList";
 // import NewsSlider from "../../components/newsSlider/NewsSlider";
@@ -6,9 +7,9 @@ import {NewsContext} from "../../contexts/NewsContext";
 import TopNews from "../../components/topNews/TopNews";
 import Series from '../../components/series/Series';
 import RecentNews from '../../components/recentNews/RecentNews';
-import Card from "../../components/card/Card";
+import Card from "../../components/home/card/Card";
 import Footer from "../../components/footer/Footer";
-import "../../styles/views/users/home.css";
+import "../../styles/pages/users/home.css";
 
 
 const Home = () => {
@@ -36,6 +37,7 @@ const Home = () => {
     }, [])
 
     return <div className = "home">
+        <Navbar></Navbar>
         <Banner 
                 // newsList = {state.newsList}
                 highlightedNews = {state.highlightedNews}

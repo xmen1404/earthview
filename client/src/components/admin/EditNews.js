@@ -30,6 +30,7 @@ const CreateNews = (props) => {
         series: {},
         title: "",
         background: "",
+        description: "",
         content:"",
         result:"",
         // isLoading: true
@@ -48,9 +49,9 @@ const CreateNews = (props) => {
         const data = res.news;
 
         console.log("check data", data);
-        const {bigCategory, category, series, title, type, background, content} = data;
+        const {bigCategory, category, series, keyword, title, type, background, description, content} = data;
 
-        console.log("test rendering data", data);
+        // console.log("test rendering data", data);
 
         // console.log("debug", title, background, content);
 
@@ -60,7 +61,12 @@ const CreateNews = (props) => {
         // console.log(date);
 
         const result = {
-            bigCategory, category, title, background: background.split("src=\"").pop().split("\"")[0], content,
+            bigCategory,
+            category,
+            title,
+            background: background.split("src=\"").pop().split("\"")[0],
+            description: description? description:"",
+            content,
             author: "admin", // still harsh code
             date:{
                 day: today.getDate(),
@@ -76,8 +82,10 @@ const CreateNews = (props) => {
             category: category,
             type: type,
             series: series !== null ? series : {_id: "default"},
+            keyword: keyword? keyword : "",
             title: title,
             background: background,
+            description: description? description:"",
             content: content,
             result: result
         })
@@ -102,7 +110,12 @@ const CreateNews = (props) => {
         // console.log(date);
 
         const result = {
-            bigCategory, category, title, background: background.split("src=\"").pop().split("\"")[0], content,
+            bigCategory,
+            category,
+            title,
+            background: background.split("src=\"").pop().split("\"")[0],
+            description: description? description:"",
+            content,
             author: "admin", // still harsh code
             date:{
                 day: today.getDate(),
@@ -125,7 +138,7 @@ const CreateNews = (props) => {
 
     const handleClick = async () => {
         try{
-            const {bigCategory, category, type, series, title, background, content} = state;
+            const {bigCategory, category, type, series, keyword, title, background, description, content} = state;
             const id = props.match.params.id;
 
 
@@ -138,13 +151,15 @@ const CreateNews = (props) => {
                 "category": category._id !== "default" ? category._id:null,
                 "type": type._id !== "default" ? type._id:null,
                 "series": series._id !== "default" ? series._id:null,
+                "keyword": keyword? keyword: "",
                 "title": title,
                 "background": background,
+                "description": description,
                 "content": content,
                 "date": `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
             }
 
-            console.log("check final", data);
+            // console.log("check final", data);
 
             const res = await updateNews(id, data);
 
@@ -167,7 +182,7 @@ const CreateNews = (props) => {
 
     // const handleChange = ( event, editor , part) => {
     const handleChange = ( event , part, editor) => {
-        console.log(event.target)
+        if(part === "keyword") console.log(event.target.value)
         let index;
         let label;
         let value;
@@ -178,11 +193,27 @@ const CreateNews = (props) => {
             value = event.target.value;
         }
 
+        let data;
+        
+        if(part === "category" || part === "type" || part === "bigCategory" || part === "series"){
+            data = {
+                name: label,
+                _id: value
+            }
+        }
+        else if(part === "keyword"){
+            data = event.target.value;
+        }
+        else{
+            data = editor.getData();
+        }
 
-        let data = part === "category" || part === "type" || part === "bigCategory" || part === "series"? {
-            name: label,
-            _id: value
-        }: editor.getData();
+        // let data = part === "category" || part === "type" || part === "bigCategory" || part === "series"? {
+        //     name: label,
+        //     _id: value
+        // }: editor.getData();
+
+
 
 
         // if(part === "background"){
@@ -193,7 +224,7 @@ const CreateNews = (props) => {
 
         // data = part === "background"? data.split("src=\"").pop().split("\"")[0] : data;
 
-        console.log("handling", part);
+        // console.log("handling", part);
 
         setState({
             ...state,
@@ -207,10 +238,11 @@ const CreateNews = (props) => {
     useEffect(()=>{
         // console.log("state change");
         view();
-    }, [state.bigCategory, state.category, state.type, state.series, state.title, state.background, state.content])
+    }, [state.bigCategory, state.category, state.type, state.series, state.keyword, state.title, 
+        state.background, state.description, state.content])
 
 
-    const {bigCategory, category, type, series, title, background, content, result} = state;
+    const {bigCategory, category, type, series, keyword, title, background, description, content, result} = state;
     // console.log("check series", series);
 
     // console.log("debug list", categoryList);
@@ -273,6 +305,16 @@ const CreateNews = (props) => {
                         </div>
                     </div>
 
+                    <div className = "keyword">
+                        <h2>keyword</h2>
+                        <input 
+                            type="text" 
+                            name="keyword" 
+                            value = {keyword}
+                            // placeholder = "Enter keyword" 
+                            onChange={(event) => handleChange(event, "keyword")} />
+                    </div>
+
                     <div className = "title">
                         <h2>Title</h2>
                         <Ckeditor 
@@ -287,6 +329,15 @@ const CreateNews = (props) => {
                         <Ckeditor 
                                     initialData = {background} 
                                     state = "background"
+                                    handleChange = {handleChange}
+                        ></Ckeditor>
+                    </div>
+
+                    <div className = "description">
+                        <h2>Description</h2>
+                        <Ckeditor 
+                                    initialData = {description} 
+                                    state = "description"
                                     handleChange = {handleChange}
                         ></Ckeditor>
                     </div>

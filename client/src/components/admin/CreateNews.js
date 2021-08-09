@@ -260,13 +260,13 @@ const CreateNews = () => {
                     </div>
 
                     <Button handleClick = {handleClick}
-                    margin =  "1.5rem 1rem 2rem 0"
-                    bgcolor = "#3B5998" 
-                    height = "2.3rem" 
-                    width = "6rem" 
-                    content = "Create" 
-                    position = "right" 
-                    color = "#ffffff"></Button>
+                            margin =  "1.5rem 1rem 2rem 0"
+                            bgcolor = "#3B5998" 
+                            height = "2.3rem" 
+                            width = "6rem" 
+                            content = "Create" 
+                            position = "right" 
+                            color = "#ffffff"></Button>
                     
                     {/* <Button handleClick = {toTop}
                             bgcolor = "#3B5998" 

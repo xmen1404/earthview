@@ -28,7 +28,7 @@
 }
 
 
-.addCategory .wrapper .footer{
+.addCategory .wrapper .category-footer{
     display: flex;
     flex-direction: row;
     justify-content: center

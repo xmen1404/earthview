@@ -120,6 +120,16 @@ const AddCategory = (props) => {
                     onChange = {(event)=>{handleChange(event)}}>    
                 </input>
 
+                <input 
+                    type = "text" 
+                    name = "description" 
+                    placeholder = "Enter description" 
+                    onChange = {(event)=>{handleChange(event)}}>
+                </input>
+{/* 
+                <input type="file" name="file" onChange={changeHandler} />
+
+
                 {props.type !== 2 &&
                     <input 
                         type = "text" 
@@ -127,16 +137,16 @@ const AddCategory = (props) => {
                         placeholder = "Enter description" 
                         onChange = {(event)=>{handleChange(event)}}>
                     </input>
-                }
+                } */}
 
-                {props.type === 2 &&
+                {props.type !== 1 &&
                     <input type="file" name="file" onChange={changeHandler} />
                 }
 
 
             </div>
 
-            <div className = "footer">
+            <div className = "category-footer">
 
                 <Button     
                             handleClick = {props.handleClick}
